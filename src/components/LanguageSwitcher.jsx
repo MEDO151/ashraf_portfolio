@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from './ui/button';
 import i18n from "../i18n";
 
 /**
@@ -28,16 +27,18 @@ const LanguageSwitcher = () => {
 
   {/* Language toggle button */ }
   return (
-    <Button
+    <>
+      <button
       onClick={handleLanguageSwitch}
-      className=""
+      className="bg-[#1c1c1c] text-white px-3.5 py-1 rounded-lg"
       role="switch"
       aria-checked={i18n.language === 'ar'}
       aria-label={t('language.switch')}
       dir='rtl'
     >
       {i18n.language === "ar" ? "EN" : "عربي"}
-    </Button>
+    </button>
+    </>
 
 
   );
