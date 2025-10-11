@@ -1,13 +1,21 @@
 {
-  "nav": {
-    "home": "Home",
-    "articles": "Articles",
-    "contact": "Contact Me",
-    "about": "About",
-    "name": "Ashraf Almuhtaseb"
-  },
-  "hero": {
-    "welcome" : "Hello",
-    "intro": "I'm Ashraf Almuhtaseb"
-  }
+    "nav": {
+        "home": "Home",
+        "articles": "Articles",
+        "contact": "Contact Me",
+        "about": "About",
+        "name": "Ashraf Almuhtaseb"
+    },
+    "hero": {
+        "welcome": "Hello",
+        "intro": "I'm Ashraf Almuhtaseb"
+    },
+    "about-me": {
+        "title": "About Me",
+        "subTitle": "Data Center Cleaning Expert",
+        "slogan": "Precision. Reliability. Performance",
+        "content": "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
+        "cvButton": "Download CV",
+        "contactButton": "Contact Me"
+    }
 }
