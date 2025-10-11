@@ -14,28 +14,30 @@ function AboutMeSection({ image, title, subTitle, desc, slogan, cvLink }) {
     slogan = slogan || t("about-me.slogan");
     cvLink = cvLink || "https://www.linkedin.com/in/ibnibrahem/";
 
+    // about-me w-full flex flex-col lg:flex-row justify-center items-center gap-5
+// md:w-4/5 lg:w-2/4
     return (
         <>
-            <section id='about' className='container p-12 bg-background'>
-                <div className='about-me  w-full flex flex-col lg:flex-row justify-center items-center gap-5 '>
-                    <div className='about__img-wrapper'>
+            <section id='about' className='container pt-20 pb-12  bg-background'>
+                <div className='grid grid-cols-1 md:grid-cols-3  gap-5 md:gap-10 px-0 md:px-10 '>
+                    <div className='about__img-wrapper md:col-span-1'>
                         <img
                             src={image}
-                            alt='Ashraf Almuhtaseb'
-                            className='about__img  object-cover'
+                            alt='Ashraf Almuhtaseb' 
+                            className='about__img  w-full object-cover'
                         />
                     </div>
-                    <div className='about__content md:ml-12 mt-8 md:mt-0 flex flex-col gap-5 text-center md:text-start md:w-4/5 lg:w-2/4'>
+                    <div className='about__content md:col-span-2 mt-8 md:mt-0 flex flex-col justify-center text-center md:text-start '>
                         <h2 className='text-4xl font-extrabold mb-4 text-primary'>
                             {title}
                         </h2>
                         <h3 className='text-2xl font-semibold mb-4 text-secondary'>
                             {subTitle}
                         </h3>
-                        <p className='mb-6 text-2xl text-justify font-medium text-muted leading-9'>
+                        <p className='mb-6 text-xl md:text-2xl md:text-justify font-medium text-muted leading-9'>
                             {desc}
                         </p>
-                        <h3 className='text-2xl font-semibold mb-4 text-secondary'>
+                        <h3 className='text-2xl font-medium md:font-semibold mb-4 text-secondary'>
                             "{slogan}"
                         </h3>
                         <div className='flex gap-4 justify-center md:justify-start'>
