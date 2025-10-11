@@ -14,11 +14,11 @@ const HeroSection = function () {
     >
       <div className="absolute inset-0 bg-black/70"></div>
 
-      <div className="relative text-white z-10 flex flex-col min-h-screen justify-center items-center gap-3 text-center">
+      <div className="relative text-white z-10 flex flex-col min-h-screen justify-center items-center gap-4 text-center">
         <h2 className="text-4xl md:text-[50px] font-extrabold">{t("hero.welcome")}</h2>
         <h1 className="!font-light text-4xl md:text-6xl">{t("hero.intro")}</h1>
 
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4npm">
            <a
             href="https://www.linkedin.com/in/ibnibrahem/"
             target="_blank"

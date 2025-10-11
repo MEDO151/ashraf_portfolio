@@ -13,20 +13,11 @@ function App() {
 
   return (
     <>
-      <Nav />
+    <Nav />
     <Routes>
       <Route path='/' element={<HeroSection />} />
       
     </Routes>
-    <div className="container mt-150">
-        <LanguageSwitcher />
-        <h1 className="text-4xl font-extrabold text-gradient-violet">
-          {t("hero.greeting")}
-        </h1>
-        <h1 className="text-4xl font-extrabold text-gradient-amber">
-          {t("hero.intro")}
-        </h1>
-      </div>
     </>
   );
 }
