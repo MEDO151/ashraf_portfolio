@@ -5,7 +5,7 @@ import { useDirection } from "./hooks/useDirection";
 import Nav from "./components/Nav";
 import { Route, Routes } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
-import { useEffect, useRef, useState } from "react";
+import AboutMeSection from "@/components/AboutMeSection";
 
 function App() {
   useDirection();
@@ -16,6 +16,7 @@ function App() {
       <Nav />
     <Routes>
       <Route path='/' element={<HeroSection />} />
+      <Route path='/about' element={<AboutMeSection />} />
       
     </Routes>
     <div className="container mt-150">

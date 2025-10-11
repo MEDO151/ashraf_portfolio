@@ -10,7 +10,7 @@ const HeroSection = function () {
     <header
       id="hero"
       className="relative min-h-screen bg-black/70 bg-cover bg-center"
-      style={{ backgroundImage: `url(${HeroImg})` }}
+      style={{ backgroundImage: `url(https://img.freepik.com/free-photo/futuristic-computer-lab-equipment-row-generated-by-ai_188544-21832.jpg)` }}
     >
       <div className="absolute inset-0 bg-black/70"></div>
 
