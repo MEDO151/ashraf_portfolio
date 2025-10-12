@@ -10,13 +10,13 @@ function ArticleCard({image, title, description}) {
     return (
         <>
             <div
-                className=' group relative flex flex-col justify-between bg-white shadow-[0_0_30px_5px_rgba(0,0,0,0.055)] border border-slate-200 rounded-b-md  hover:shadow-lg transition-shadow duration-300'
+                className=' group relative flex flex-col bg-white shadow-[0_0_30px_5px_rgba(0,0,0,0.055)] border border-slate-200 rounded-b-md  hover:shadow-lg transition-shadow duration-300'
                 style={{ perspective: "1000px" }}
             >
                 <div className='relative overflow-hidden'>
 
                     <img
-                        className='w-full  h-[280px]  object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110'
+                        className='w-full h-[280px] object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110'
                         src={img}
                         alt='investment-seed-round'
                     />
@@ -28,7 +28,7 @@ function ArticleCard({image, title, description}) {
                     </div>
                 </div>
 
-                <div className='px-2 py-4 flex flex-col gap-5 text-center text-secondary'>
+                <div className='px-2 py-4 flex flex-col flex-grow-1 justify-between gap-5 text-center text-secondary'>
                     <h6 className='text-2xl font-semibold text-primary'>
                         {cardTitle}
                     </h6>
