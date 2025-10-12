@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
     <>
       <button
       onClick={handleLanguageSwitch}
-      className="bg-[#1c1c1c] cursor-pointer text-white px-3.5 py-1 rounded-lg"
+      className="bg-[#1c1c1c] cursor-pointer text-white px-3.5 py-1 rounded-sm"
       role="switch"
       aria-checked={i18n.language === 'ar'}
       aria-label={t('language.switch')}

@@ -18,22 +18,25 @@
     "cvButton": "Download CV",
     "contactButton": "Contact Me"
   },
-  "contact": [
-    {
-        "id" : 1,
+  "contact": {
+    "title": "Contact Me",
+    "1": {
       "title": "Address",
       "content": "Riyadh KSA"
     },
-    {
-        "id" : 2,
-        "title" : "Email",
-        "content" : "Ashraf@iData.center"
-    }
-    ,
-    {
-        "id" : 3,
-        "title" : "Phone",
-        "content" : "+966 545407722"
-    }
-  ]
+    "2": {
+      "title": "Email",
+      "content": "Ashraf@iData.center"
+    },
+    "3": {
+      "title": "Phone",
+      "content": "+966 545407722"
+    },
+    "nameInput": "Name",
+    "emailInput" : "Email",
+    "texterea" : "Message",
+    "button" : "Submit"
+
+  },
+  "copyRight" : "© 2025 idata.center All rights reserved."
 }
