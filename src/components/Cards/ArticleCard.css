@@ -1,7 +1,7 @@
 /* 3D overlay for team image */
 .overlay {
   position: absolute;
-  background-color: #fff;
+  background-color: #ffffff53;
   opacity: 0;
   top: 5px;
   right: 5px;
@@ -19,15 +19,14 @@
 .group:focus-within .overlay {
   transform: rotateY(0deg);
   transform: rotatey(180deg) scale(1);
-  opacity: .95;
+  opacity: 1;
 }
 
 .group:hover button,
-.group:focus-within button{
-opacity: 1 !important;
+.group:focus-within button {
+  opacity: 1 !important;
 }
 
 .overlay button {
   transform: rotateY(180deg);
-  
 }
