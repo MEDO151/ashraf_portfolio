@@ -9,33 +9,34 @@ function ArticleCard({image, title, description}) {
     return (
         <>
             <div
-                className=' group relative flex flex-col my-6 bg-secondary shadow-sm border border-slate-200 rounded-lg w-96 hover:shadow-lg transition-shadow duration-300'
-                style={{ perspective: "1000px" }} // enables 3D effect
+                className=' group relative flex flex-col my-6 bg-white shadow-[0_0_30px_5px_rgba(0,0,0,0.055)] border border-slate-200 rounded-b-md w-96 hover:shadow-lg transition-shadow duration-300'
+                style={{ perspective: "1000px" }}
             >
-                <div className='relative h-64 m-2.5 overflow-hidden rounded-md'>
-                    {/* Image */}
+                <div className='relative overflow-hidden'>
+
                     <img
-                        className='w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110'
+                        className='w-full max-h-[220px] object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110'
                         src={img}
                         alt='investment-seed-round'
                     />
 
-                    {/* Overlay (will flip in from left and fade) */}
                     <div
-                        className='overlay absolute inset-0 flex items-center justify-center'
+                        className='overlay  absolute inset-0 hidden md:flex items-center justify-center'
                         aria-hidden='false'>
                         <Button  size='lg'>View More </Button>
                     </div>
                 </div>
 
-                <div className='p-3 text-center text-background'>
-                    <h6 className='mb-2 text-2xl font-semibold'>
+                <div className='px-4 py-6 flex flex-col gap-5 text-center text-secondary'>
+                    <h6 className='text-2xl font-semibold text-primary'>
                         {cardTitle}
                     </h6>
                     <p className='font-medium'>
                         {cardDescription}
                     </p>
+                    <Button   size='lg'>View More </Button>
                 </div>
+                
             </div>
         </>
     );
