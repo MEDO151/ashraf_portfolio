@@ -17,5 +17,43 @@
         "content": "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
         "cvButton": "Download CV",
         "contactButton": "Contact Me"
+    },
+    "articles": {
+        "sectionTitle": "Articles",
+        "sectionSubtitle": "Our Latest Articles",
+        "readMore": "Read More",
+        "viewAll": "View All",
+        "items": {
+            "1": {
+                "title": "How to Start a Business",
+                "description": "Learn how to start a business from scratch with this step-by-step guide.",
+                "image": "https://www.shutterstock.com/image-photo/data-centers-filled-rows-servers-600nw-2502153963.jpg"
+            },
+            "2": {
+                "title": "The Benefits of Online Marketing",
+                "description": "Discover the many benefits of online marketing and how it can help your business grow.",
+                "image": "https://media.istockphoto.com/id/2148123501/photo/big-data-structure-blocks-concept.jpg?s=612x612&w=0&k=20&c=PlEqZm4p-LB6Y6WbVNJigy7LyM9uxZVGO67rC_XI0a4="
+            },
+            "3": {
+                "title": "How to Write a Business Plan",
+                "description": "Learn how to write a business plan for your startup or small business.",
+                "image": "https://media.istockphoto.com/id/1343315703/photo/exchanging-data-blue-digital-technology-innovation-computer-network.jpg?s=612x612&w=0&k=20&c=YMKYmEoIY3xlqO7MfLxbv10IQJsy9FFSae4vp3WaBMg="
+            },
+            "4": {
+                "title": "The Importance of Branding",
+                "description": "Discover why branding is essential for any business and how to create a strong brand identity.",
+                "image": "https://media.istockphoto.com/id/2148113350/photo/data-center-server-racks-it-modern-hardware-server-room-data-storage-center-database.jpg?s=612x612&w=0&k=20&c=6rMsjA_oGVjsSpFCed-Cg6h-9XPn8I3vPg8FWOQulos="
+            },
+            "5": {
+                "title": "How to Manage Your Time",
+                "description": "Learn how to manage your time effectively and get more done in less time.",
+                "image": "https://media.istockphoto.com/id/1495819409/photo/digital-mind-brain-artificial-intelligence-concept.jpg?s=612x612&w=0&k=20&c=_lIdPHOlIcUrFsZ-UwaG3xEkUu7dnM4NZK37zT0kokc="
+            },
+            "6": {
+                "title": "The Future of E-commerce",
+                "description": "Discover the future of e-commerce and how it can revolutionize the way businesses operate.",
+                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg"
+            }
+        }
     }
 }
