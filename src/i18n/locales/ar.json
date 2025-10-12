@@ -38,4 +38,50 @@
     "button" : "ارسال"
   },
   "copyRight": "© 2025  جميع الحقوق محفوظة ل idata.center ."
+    "about-me": {
+        "title": "نبذة عني",
+        "subTitle": "خبير في تنظيف مراكز البيانات",
+        "slogan": "الدقة | الموثوقية | الأداء",
+        "content": "أنا أشرف المحتسب، خبير في تنظيف مراكز البيانات أعمل على رفع كفاءة واستدامة بيئات العمل التقنية من خلال حلول احترافية تضمن أعلى معايير السلامة والجودة. أسعى دائمًا إلى تحقيق التوازن بين النظافة الدقيقة وكفاءة التشغيل لضمان جاهزية الأنظمة واستمراريتها.",
+        "cvButton": "السيرة الذاتية",
+        "contactButton": "تواصل معي"
+    },
+    "articles": {
+        "sectionTitle": "المقالات",
+        "sectionSubtitle": "أحدث المقالات لدينا",
+        "readMore": "قراءة المزيد",
+        "viewAll": "عرض الكل",
+        "items": {
+            "1": {
+                "title": "كيف تبدأ مشروعك الخاص",
+                "description": "تعلّم كيف تبدأ مشروعك من الصفر خطوة بخطوة باستخدام هذا الدليل العملي.",
+                "image": "https://www.shutterstock.com/image-photo/data-centers-filled-rows-servers-600nw-2502153963.jpg"
+            },
+            "2": {
+                "title": "فوائد التسويق الإلكتروني",
+                "description": "اكتشف الفوائد العديدة للتسويق الإلكتروني وكيف يمكن أن يساعد في نمو عملك.",
+                "image": "https://media.istockphoto.com/id/2148123501/photo/big-data-structure-blocks-concept.jpg?s=612x612&w=0&k=20&c=PlEqZm4p-LB6Y6WbVNJigy7LyM9uxZVGO67rC_XI0a4="
+            },
+            "3": {
+                "title": "كيفية كتابة خطة عمل",
+                "description": "تعرف على كيفية كتابة خطة عمل ناجحة لمشروعك الناشئ أو شركتك الصغيرة.",
+                "image": "https://media.istockphoto.com/id/1343315703/photo/exchanging-data-blue-digital-technology-innovation-computer-network.jpg?s=612x612&w=0&k=20&c=YMKYmEoIY3xlqO7MfLxbv10IQJsy9FFSae4vp3WaBMg="
+            },
+            "4": {
+                "title": "أهمية الهوية التجارية",
+                "description": "اكتشف لماذا تُعدّ العلامة التجارية أمرًا أساسيًا لأي مشروع، وكيف تنشئ هوية قوية.",
+                "image": "https://media.istockphoto.com/id/2148113350/photo/data-center-server-racks-it-modern-hardware-server-room-data-storage-center-database.jpg?s=612x612&w=0&k=20&c=6rMsjA_oGVjsSpFCed-Cg6h-9XPn8I3vPg8FWOQulos="
+            },
+            "5": {
+                "title": "كيفية إدارة وقتك بفعالية",
+                "description": "تعلم كيف تدير وقتك بكفاءة وتنجز مهامك بشكل أفضل في وقت أقل.",
+                "image": "https://media.istockphoto.com/id/1495819409/photo/digital-mind-brain-artificial-intelligence-concept.jpg?s=612x612&w=0&k=20&c=_lIdPHOlIcUrFsZ-UwaG3xEkUu7dnM4NZK37zT0kokc="
+            },
+            "6": {
+                "title": "مستقبل التجارة الإلكترونية",
+                "description": "اكتشف مستقبل التجارة الإلكترونية وكيف ستغيّر طريقة عمل الشركات حول العالم.",
+                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg"
+            }
+        }
+    }
 }
