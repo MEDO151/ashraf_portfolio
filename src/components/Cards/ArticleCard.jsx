@@ -3,10 +3,14 @@ import "./ArticleCard.css";
 import { Button } from "@/components/ui/button";
 import { t } from "i18next";
 
-function ArticleCard({image, title, description}) {
-    let img = image || 'https://img.freepik.com/free-photo/futuristic-computer-lab-equipment-row-generated-by-ai_188544-28056.jpg';
-    let cardTitle = title || 'Successful Seed Round';
-    let cardDescription = description || 'We are thrilled to announce the completion of our seed round, securing $2M in investment to fuel product development and market expansion.';
+function ArticleCard({ image, title, description }) {
+    let img =
+        image ||
+        "https://img.freepik.com/free-photo/futuristic-computer-lab-equipment-row-generated-by-ai_188544-28056.jpg";
+    let cardTitle = title || "Successful Seed Round";
+    let cardDescription =
+        description ||
+        "We are thrilled to announce the completion of our seed round, securing $2M in investment to fuel product development and market expansion.";
     return (
         <>
             <div
@@ -14,7 +18,6 @@ function ArticleCard({image, title, description}) {
                 style={{ perspective: "1000px" }}
             >
                 <div className='relative overflow-hidden'>
-
                     <img
                         className='w-full h-[280px] object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110'
                         src={img}
@@ -23,8 +26,9 @@ function ArticleCard({image, title, description}) {
 
                     <div
                         className='overlay  absolute inset-0 hidden md:flex items-center justify-center'
-                        aria-hidden='false'>
-                        <Button  size='lg'>{t('articles.readMore')} </Button>
+                        aria-hidden='false'
+                    >
+                        <Button size='lg'>{t("articles.readMore")} </Button>
                     </div>
                 </div>
 
@@ -32,12 +36,9 @@ function ArticleCard({image, title, description}) {
                     <h6 className='text-2xl font-semibold text-primary'>
                         {cardTitle}
                     </h6>
-                    <p className='font-medium'>
-                        {cardDescription}
-                    </p>
-                    <Button   size='lg'>{t('articles.readMore')}</Button>
+                    <p className='font-medium'>{cardDescription}</p>
+                    <Button size='lg'>{t("articles.readMore")}</Button>
                 </div>
-                
             </div>
         </>
     );

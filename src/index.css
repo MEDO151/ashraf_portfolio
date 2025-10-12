@@ -162,7 +162,7 @@ button:focus-visible {
 
   --popover-foreground: oklch(0.145 0 0);
 
-  --primary: #343434; 
+  --primary: #343434;
 
   /* --input:#f4f4f4; */
 
@@ -303,10 +303,12 @@ button:focus-visible {
 .rotate-y-90 {
   transform: rotateY(90deg);
 }
+
 .group-hover\:rotate-y-0:hover .rotate-y-90 {
   transform: rotateY(0deg);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
 }
