@@ -1,11 +1,8 @@
 import { useTranslation } from "react-i18next";
-// import './App.css'
-import LanguageSwitcher from "./components/LanguageSwitcher";
-import { useDirection } from "./hooks/useDirection";
-import Nav from "./components/Nav";
+import { useDirection } from "@/hooks/useDirection";
+import Nav from "@/components/Nav";
 import { Route, Routes } from "react-router-dom";
-import HeroSection from "./components/HeroSection";
-import { useEffect, useRef, useState } from "react";
+import Home from '@/pages/Home';
 
 function App() {
   useDirection();
@@ -15,8 +12,7 @@ function App() {
     <>
     <Nav />
     <Routes>
-      <Route path='/' element={<HeroSection />} />
-      
+      <Route path='/' element={<Home />} />
     </Routes>
     </>
   );
