@@ -50,7 +50,7 @@ export default function AllArticles({ articles }) {
                             setSearchQuery(e.target.value);
                         }}
                         type='text'
-                        placeholder='Search...'
+                        placeholder={`${t("articles.search")}...`}
                         className='border border-gray-300 rounded-md p-2 w-1/2'
                     />
                 </div>
@@ -67,6 +67,7 @@ export default function AllArticles({ articles }) {
                             title={article.title}
                             description={article.description}
                             image={article.image}
+                            id ={article.id}
                         />
                     ))}
                 </div>

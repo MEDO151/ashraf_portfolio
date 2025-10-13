@@ -3,6 +3,7 @@ import ArticleCard from "@/components/Cards/ArticleCard";
 import { t } from "i18next";
 import { Button } from "./ui/button";
 import Header from "@/components/Header";
+import { Link } from "react-router-dom";
 
 function ArticlesSection({ articles, title, subTitle }) {
     let titleText = title || t("articles.sectionTitle");
@@ -26,13 +27,16 @@ function ArticlesSection({ articles, title, subTitle }) {
                                 title={article.title}
                                 description={article.description}
                                 image={article.image}
+                                id = {article.id}
                             />
                         ))}
                     </div>
-                    <div className='buttons w-fit mx-auto my-4'>
-                        <Button variant='outline' size='lg'>
+                    <div className='buttons w-60 px-10 mx-auto my-4'>
+                        <Link to={'/articles'}>
+                            <Button  variant='outline' size='lg'>
                             {t("articles.viewAll")}
                         </Button>
+                        </Link>
                     </div>
                 </div>
             </section>

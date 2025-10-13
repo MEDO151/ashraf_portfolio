@@ -12,7 +12,7 @@ const HeroSection = function ({ img, linLink }) {
     return (
         <header
             id='hero'
-            className='relative min-h-screen bg-black/70 bg-cover bg-center'
+            className='relative min-h-screen bg-cover bg-center'
             style={{ backgroundImage: `url(${img})` }}
         >
             <div className='absolute inset-0 bg-black/70'></div>
