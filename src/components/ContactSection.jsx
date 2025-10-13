@@ -101,9 +101,7 @@ export default function ContactSection() {
                     />
                 </form>
             </section>
-            <div className='mx-auto py-10 bg-[#212529]'>
-                <p className='text-white text-center'>{t("copyRight")}</p>
-            </div>
+
         </>
     );
 }
