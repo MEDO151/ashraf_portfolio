@@ -25,10 +25,12 @@ export default function ArticleDetails() {
         <div className="container py-12 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-2 items-center">
             {cleanHTML ? (
-          <div
-            className="prose flex flex-col gap-5 col-span-1 lg:col-span-2 prose-lg max-w-none text-gray-800 leading-relaxed"
+          <div className='prose flex flex-col gap-5 col-span-1 lg:col-span-2 prose-lg max-w-none text-gray-800 leading-relaxed'>
+            <div
+            className="not-tailwind "
             dangerouslySetInnerHTML={{ __html: cleanHTML }}
           />
+          </div>
         ) : (
           <p className="text-center text-gray-500">لا يوجد محتوى لهذا المقال بعد.</p>
         )}
