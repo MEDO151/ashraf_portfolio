@@ -42,7 +42,7 @@ export default function AllArticles({ articles }) {
                 title={t("articles.sectionTitle")}
                 subtitle={t("articles.allrticlesSlogan")}
             />
-            <section className='allArticles bg-background py-12'>
+            <section className='allArticles bg-background py-8'>
                 {/* search input*/}
                 <div className='flex justify-center items-center '>
                     <input
@@ -51,15 +51,37 @@ export default function AllArticles({ articles }) {
                         }}
                         type='text'
                         placeholder={`${t("articles.search")}...`}
-                        className='border border-gray-300 rounded-md p-2 w-1/2'
+                        className='border border-gray-300 rounded-md p-2 w-1/2 mb-6'
                     />
                 </div>
 
-                    {filteredArticles.length === 0 && (
-                      <h3 className='text-2xl font-semibold mb-4 text-secondary text-center p-12 '>
-                          No articles found
-                        </h3>
-                    )}
+                {filteredArticles.length === 0 && (
+                    <h3 className='text-2xl font-semibold mb-4 text-secondary text-center p-12 '>
+                        No articles found
+                    </h3>
+                )}
+
+                {/* pinned articles */}
+                {filteredArticles.filter((article) => article.isPinned).length > 0 && (
+                    <div className='relative  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6 border border-gray-300 container rounded-sm '>
+                        <span className='absolute -top-3 left-5 bg-background px-3 text-sm font-bold text-gray-700'>
+                            🧷 {t("articles.pinnedArticles")}
+                        </span>
+                        {filteredArticles
+                            .filter((article) => article.isPinned)
+                            .map((article, id) => (
+                                <ArticleCard
+                                    key={id}
+                                    title={article.title}
+                                    description={article.description}
+                                    image={article.image}
+                                    id={article.id}
+                                />
+                            ))}
+                    </div>
+                )}
+
+                {/* All articles */}
                 <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-12 '>
                     {filteredArticles.map((article, id) => (
                         <ArticleCard
@@ -67,7 +89,7 @@ export default function AllArticles({ articles }) {
                             title={article.title}
                             description={article.description}
                             image={article.image}
-                            id ={article.id}
+                            id={article.id}
                         />
                     ))}
                 </div>
