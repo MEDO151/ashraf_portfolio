@@ -13,8 +13,12 @@ export default function AboutAdmin({
     titleEn: initialData.titleEn || "About Me.",
     subtitleAr: initialData.subtitleAr || "خبير في تنظيف مراكز البيانات",
     subtitleEn: initialData.subtitleEn || "Data Center Cleaning Expert",
-    descriptionAr: initialData.descriptionAr || "أنا أشرف المحتسب، خبير في تنظيف مراكز البيانات أعمل على رفع كفاءة واستدامة بيئات العمل التقنية من خلال حلول احترافية تضمن أعلى معايير السلامة والجودة. أسعى دائمًا إلى تحقيق التوازن بين النظافة الدقيقة وكفاءة التشغيل لضمان جاهزية الأنظمة واستمراريتها.",
-    descriptionEn: initialData.descriptionEn || "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
+    descriptionAr:
+      initialData.descriptionAr ||
+      "أنا أشرف المحتسب، خبير في تنظيف مراكز البيانات أعمل على رفع كفاءة واستدامة بيئات العمل التقنية من خلال حلول احترافية تضمن أعلى معايير السلامة والجودة. أسعى دائمًا إلى تحقيق التوازن بين النظافة الدقيقة وكفاءة التشغيل لضمان جاهزية الأنظمة و  استمراريتها.",
+    descriptionEn:
+      initialData.descriptionEn ||
+      "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
     sloganAr: initialData.sloganAr || '"الدقة | الموثوقية | الأداء"',
     sloganEn: initialData.sloganEn || '"Precision. Reliability. Performance"',
     image:
@@ -44,7 +48,7 @@ export default function AboutAdmin({
   };
 
   return (
-    <main>
+    <>
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -104,10 +108,30 @@ export default function AboutAdmin({
             {[
               { id: "titleAr", label: "العنوان (عربي)", dir: "rtl" },
               { id: "titleEn", label: "العنوان (إنجليزي)", dir: "ltr" },
-              { id: "subtitleAr", label: "العنوان الفرعي (عربي)", type: "textarea", dir: "rtl" },
-              { id: "subtitleEn", label: "العنوان الفرعي (إنجليزي)", type: "textarea", dir: "ltr" },
-              { id: "descriptionAr", label: "الوصف (عربي)", type: "textarea", dir: "rtl" },
-              { id: "descriptionEn", label: "الوصف (إنجليزي)", type: "textarea", dir: "ltr" },
+              {
+                id: "subtitleAr",
+                label: "العنوان الفرعي (عربي)",
+                type: "textarea",
+                dir: "rtl",
+              },
+              {
+                id: "subtitleEn",
+                label: "العنوان الفرعي (إنجليزي)",
+                type: "textarea",
+                dir: "ltr",
+              },
+              {
+                id: "descriptionAr",
+                label: "الوصف (عربي)",
+                type: "textarea",
+                dir: "rtl",
+              },
+              {
+                id: "descriptionEn",
+                label: "الوصف (إنجليزي)",
+                type: "textarea",
+                dir: "ltr",
+              },
               { id: "sloganAr", label: "الشعار (عربي)", dir: "rtl" },
               { id: "sloganEn", label: "الشعار (إنجليزي)", dir: "ltr" },
             ].map(({ id, label, type, dir }) => (
@@ -120,7 +144,7 @@ export default function AboutAdmin({
                     id={id}
                     value={data[id]}
                     onChange={handleChange}
-                    className="w-full min-h-[80px] rounded-md border px-2 py-2 text-primary focus-visible:ring-2"
+                    className="w-full min-h-[80px] rounded-md border px-2 py-2 text-primary"
                     dir={dir}
                   />
                 ) : (
@@ -128,7 +152,7 @@ export default function AboutAdmin({
                     id={id}
                     value={data[id]}
                     onChange={handleChange}
-                    className="w-full rounded-md border px-2 py-2 text-primary focus-visible:ring-2"
+                    className="w-full rounded-md border px-2 py-2 text-primary"
                     dir={dir}
                   />
                 )}
@@ -142,6 +166,7 @@ export default function AboutAdmin({
             <div className="border rounded-md p-3 w-full">
               <div className="relative">
                 <img
+                loading="lazy"
                   alt="Hero image"
                   className="w-full h-44 object-cover rounded-md border"
                   src={data.image}
@@ -176,6 +201,6 @@ export default function AboutAdmin({
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }

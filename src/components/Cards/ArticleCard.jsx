@@ -20,6 +20,7 @@ function ArticleCard({ image, title, description, id }) {
       >
         <div className="relative overflow-hidden">
           <img
+          loading="lazy"
             className="w-full h-[280px] object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110"
             src={img}
             alt="investment-seed-round"

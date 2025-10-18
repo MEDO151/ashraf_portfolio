@@ -21,8 +21,7 @@ const HeroSection = function ({ img, linLink }) {
                 <h2 className='text-4xl md:text-[50px] font-extrabold'>
                     {t("hero.welcome")}
                 </h2>
-                <h1 className='!font-light text-4xl md:text-6xl'>
-                    {t("hero.intro")}
+                <h1 className='!font-light leading-[1.2] text-4xl md:text-6xl'>                    {t("hero.intro")}
                 </h1>
 
                 <div className='flex gap-4npm'>

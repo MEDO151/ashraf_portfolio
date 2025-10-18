@@ -1,6 +1,6 @@
 import { useDirection } from "@/hooks/useDirection";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "@/pages/Home";
+import Home from "./pages/Home";
 import AllArticles from "@/pages/AllArticles";
 import ArticleDetails from "./pages/ArticleDetails";
 import MainLayout from "./components/layouts/MainLayout";
@@ -12,7 +12,8 @@ import ContactAdmin from "./components/ContactAdmin";
 import SeoAdmin from "./components/SeoAdmin";
 import Login from "./pages/Login";
 import ArticleSectionAdmin from "./components/ArticleSectionAdmin";
-import OneArticleAdmin from "./components/OneArticleAdmin";
+import EditOneArticleAdmin from "./components/EditOneArticleAdmin";
+import CreateArticle from "./components/CreateArticle";
 
 function App() {
   useDirection();
@@ -23,18 +24,20 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<AllArticles />} />
-          <Route path="/articles/:id" element={<ArticleDetails />} />
+          <Route path="/articles/:slug" element={<ArticleDetails />} />
         </Route>
 
         <Route path="/admin" element={<DashboardLayout />}>
-          <Route index element={<Navigate to="heroadmin" />} />
-          <Route path="heroadmin" element={<HeroAdmin />} />
-          <Route path="aboutadmin" element={<AboutAdmin />} />
-          <Route path="articleadmin" element={<ArticleAdmin />} />
-          <Route path="articlesectionadmin" element={<ArticleSectionAdmin />} />
-          <Route path="/admin/articleadmin/:id" element={<OneArticleAdmin />} />
-          <Route path="contactadmin" element={<ContactAdmin />} />
-          <Route path="seoadmin" element={<SeoAdmin />} />
+          <Route index element={<Navigate to="hero" />} />
+          <Route path="hero" element={<HeroAdmin />} />
+          <Route path="about" element={<AboutAdmin />} />
+          <Route path="article" element={<ArticleAdmin />} />
+          <Route path="articlesection" element={<ArticleSectionAdmin />} />
+          <Route path="/admin/article/edit/:id" element={<EditOneArticleAdmin />} />
+          <Route path="/admin/article/create" element={<CreateArticle />} />
+
+          <Route path="contact" element={<ContactAdmin />} />
+          <Route path="seo" element={<SeoAdmin />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

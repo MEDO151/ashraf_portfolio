@@ -108,7 +108,7 @@ export default function HeroAdminCom({
                     id={id}
                     value={data[id]}
                     onChange={handleChange}
-                    className="flex w-full min-h-[80px] rounded-md border px-2 py-2 text-primary focus-visible:ring-2"
+                    className="flex w-full min-h-[80px] rounded-md border px-2 py-2 text-primary"
                     dir={dir}
                   />
                 ) : (
@@ -116,7 +116,7 @@ export default function HeroAdminCom({
                     id={id}
                     value={data[id]}
                     onChange={handleChange}
-                    className="flex w-full rounded-md border px-2 py-2 text-primary focus-visible:ring-2"
+                    className="flex w-full rounded-md border px-2 py-2 text-primary"
                     dir={dir}
                   />
                 )}
@@ -130,6 +130,7 @@ export default function HeroAdminCom({
             <div className="border rounded-md p-3 w-full">
               <div className="relative">
                 <img
+                loading="lazy"
                   alt="Hero image"
                   className="w-full h-44 object-cover rounded-md border"
                   src={data.image}

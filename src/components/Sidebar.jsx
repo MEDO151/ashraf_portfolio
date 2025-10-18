@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const links = [
   {
-    to: "/admin/heroadmin",
+    to: "/admin/hero",
     label: "الرئيسية",
     icon: (
       <svg
@@ -27,7 +27,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/aboutadmin",
+    to: "/admin/about",
     label: "من انا",
     icon: (
       <svg
@@ -50,7 +50,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/articlesectionadmin",
+    to: "/admin/articlesection",
     label: "صفحة المقالات",
     icon: (
       <svg
@@ -73,7 +73,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/articleadmin",
+    to: "/admin/article",
     label: "المقالات",
     icon: (
       <svg
@@ -96,7 +96,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/contactadmin",
+    to: "/admin/contact",
     label: "تواصل معي",
     icon: (
       <svg
@@ -119,7 +119,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/seoadmin",
+    to: "/admin/seo",
     label: "محركات البحث",
     icon: (
       <svg

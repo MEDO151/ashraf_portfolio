@@ -11,4 +11,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    minify: 'esbuild',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 600,
+  },
 })

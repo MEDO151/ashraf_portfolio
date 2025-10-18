@@ -3,7 +3,7 @@ import HeroAdminCom from './HeroAdminCom'
 
 export default function ArticleSectionAdmin() {
   return (
-    <main>
+    <>
         <HeroAdminCom
         title="تحرير قسم المقالات" 
         description="إدارة  محتوى قسم المقالات"
@@ -17,6 +17,6 @@ export default function ArticleSectionAdmin() {
             "https://res.cloudinary.com/demo/image/upload/sample.jpg",
         }}
       />
-    </main>
+    </>
   )
 }

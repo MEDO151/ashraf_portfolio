@@ -1,99 +1,109 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PagesHeader from "@/components/PagesHeader.jsx";
 import articlesImage from "@/assets/HeroImg03.jpg";
 import ArticleCard from "@/components/Cards/ArticleCard";
-import { useState, useEffect } from "react";
-import i18next from "i18next";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 
-export default function AllArticles({ articles }) {
-    let allArticles = articles || t("articles.items", { returnObjects: true });
+export default function AllArticles() {
+  const [articles, setArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const currentLang = i18next.language || "en";
 
-    const allArticlesArray = Array.isArray(allArticles)
-        ? allArticles
-        : Object.values(allArticles);
+  const getAllArticles = async () => {
+    try {
+      const res = await fetch("http://16.171.133.67:8080/articles");
+      const data = await res.json();
+      setArticles(data);
+      setFilteredArticles(data);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    }
+  };
 
-    let [filteredArticles, setFilteredArticles] = useState(allArticlesArray);
-    let [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    getAllArticles();
+  }, []);
 
-    function filterArticles() {
-        if (searchQuery === "") {
-            setFilteredArticles(allArticlesArray);
-            return;
-        }
-        const query = searchQuery.toLocaleLowerCase();
-        const filtered = allArticlesArray.filter((article) => {
-            return (
-                article.title.toLocaleLowerCase().includes(query) ||
-                article.description.toLocaleLowerCase().includes(query)
-            );
-        });
-        setFilteredArticles(filtered);
+  useEffect(() => {
+    if (!articles) return;
+
+    // لو المستخدم ما كتبش حاجة في البحث
+    if (searchQuery.trim() === "") {
+      setFilteredArticles(articles);
+      return;
     }
 
-    useEffect(() => {
-        filterArticles();
-    }, [searchQuery, articles, i18next.language]);
+    const query = searchQuery.toLowerCase();
 
-    return (
-        <>
-            <PagesHeader
-                img={articlesImage}
-                title={t("articles.sectionTitle")}
-                subtitle={t("articles.allrticlesSlogan")}
+    const filtered = articles.filter((article) => {
+      const title = article.header.title[currentLang]?.toLowerCase() || "";
+      const desc = article.header.desc[currentLang]?.toLowerCase() || "";
+      return title.includes(query) || desc.includes(query);
+    });
+
+    setFilteredArticles(filtered);
+  }, [searchQuery, articles, i18next.language]);
+
+  return (
+    <>
+      <PagesHeader
+        img={articlesImage}
+        title={t("articles.sectionTitle")}
+        subtitle={t("articles.allrticlesSlogan")}
+      />
+
+      <section className="allArticles bg-background py-8">
+        {/* 🔍 مربع البحث */}
+        <div className="flex justify-center items-center">
+          <input
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="text"
+            placeholder={`${t("articles.search")}...`}
+            className="border border-gray-300 rounded-md p-2 w-1/2 mb-6"
+          />
+        </div>
+
+        {/* 🚫 لو مفيش مقالات */}
+        {filteredArticles.length === 0 && (
+          <h3 className="text-2xl font-semibold mb-4 text-secondary text-center p-12">
+            {t("articles.noResults") || "No articles found"}
+          </h3>
+        )}
+
+        {/* 📌 المقالات المثبتة */}
+        {filteredArticles.filter((article) => article.isPinned).length > 0 && (
+          <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6 border border-gray-300 container rounded-sm">
+            <span className="absolute -top-3 left-5 bg-background px-3 text-sm font-bold text-gray-700">
+              🧷 {t("articles.pinnedArticles")}
+            </span>
+            {filteredArticles
+              .filter((article) => article.isPinned)
+              .map((article) => (
+                <ArticleCard
+                  key={article._id}
+                  title={article.header.title[currentLang]}
+                  description={article.header.desc[currentLang]}
+                  image={article.header.imgUrl}
+                  id={article.slug}
+                />
+              ))}
+          </div>
+        )}
+
+        {/* 📰 كل المقالات */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-12">
+          {filteredArticles.map((article) => (
+            <ArticleCard
+              key={article._id}
+              title={article.header.title[currentLang]}
+              description={article.header.desc[currentLang]}
+              image={article.header.imgUrl}
+              id={article.slug}
             />
-            <section className='allArticles bg-background py-8'>
-                {/* search input*/}
-                <div className='flex justify-center items-center '>
-                    <input
-                        onChange={(e) => {
-                            setSearchQuery(e.target.value);
-                        }}
-                        type='text'
-                        placeholder={`${t("articles.search")}...`}
-                        className='border border-gray-300 rounded-md p-2 w-1/2 mb-6'
-                    />
-                </div>
-
-                {filteredArticles.length === 0 && (
-                    <h3 className='text-2xl font-semibold mb-4 text-secondary text-center p-12 '>
-                        No articles found
-                    </h3>
-                )}
-
-                {/* pinned articles */}
-                {filteredArticles.filter((article) => article.isPinned).length > 0 && (
-                    <div className='relative  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6 border border-gray-300 container rounded-sm '>
-                        <span className='absolute -top-3 left-5 bg-background px-3 text-sm font-bold text-gray-700'>
-                            🧷 {t("articles.pinnedArticles")}
-                        </span>
-                        {filteredArticles
-                            .filter((article) => article.isPinned)
-                            .map((article, id) => (
-                                <ArticleCard
-                                    key={id}
-                                    title={article.title}
-                                    description={article.description}
-                                    image={article.image}
-                                    id={article.id}
-                                />
-                            ))}
-                    </div>
-                )}
-
-                {/* All articles */}
-                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-12 '>
-                    {filteredArticles.map((article, id) => (
-                        <ArticleCard
-                            key={id}
-                            title={article.title}
-                            description={article.description}
-                            image={article.image}
-                            id={article.id}
-                        />
-                    ))}
-                </div>
-            </section>
-        </>
-    );
+          ))}
+        </div>
+      </section>
+    </>
+  );
 }

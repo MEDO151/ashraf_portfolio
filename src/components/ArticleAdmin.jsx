@@ -6,9 +6,7 @@ import i18next, { t } from "i18next";
 export default function ArticleAdmin({ articles }) {
   const initialArticles = Array.isArray(articles)
     ? articles
-    : Object.values(
-        articles || t("articles.items", { returnObjects: true })
-      );
+    : Object.values(articles || t("articles.items", { returnObjects: true }));
 
   const [allArticles, setAllArticles] = useState(initialArticles);
   const [filteredArticles, setFilteredArticles] = useState(initialArticles);
@@ -52,12 +50,14 @@ export default function ArticleAdmin({ articles }) {
 
       <div className="px-3 py-4 flex flex-col justify-between gap-4 flex-grow text-center text-secondary">
         <h6 className="text-2xl font-semibold text-primary">
-          {article.title.split(" ").slice(0,3).join(' ')}
+          {article.title.split(" ").slice(0, 3).join(" ")}
         </h6>
-        <p className="font-medium">{article.description.split(" ").slice(0,6).join(' ')}</p>
+        <p className="font-medium">
+          {article.description.split(" ").slice(0, 6).join(" ")}
+        </p>
 
         <div className="flex justify-between items-center">
-          <Link to={`/admin/articleadmin/${id}`} className="w-fit">
+          <Link to={`/admin/article/edit/${id}`} className="w-fit">
             <Button className="py-2 px-3" size="lg">
               تعديل
               <svg
@@ -112,6 +112,33 @@ export default function ArticleAdmin({ articles }) {
 
   return (
     <main>
+      <div className="flex justify-between mb-10 items-center">
+        <div>
+          <h1 className="text-2xl text-primary font-bold mb-1">
+            إدارة المقالات
+          </h1>
+        </div>
+        <Link to={"/admin/article/create"}>
+          <Button size="cv" className="py-2 text-md flex gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-plus h-4 w-4 ml-2"
+            >
+              <path d="M5 12h14"></path>
+              <path d="M12 5v14"></path>
+            </svg>
+            اضافه مقال جديد
+          </Button>
+        </Link>
+      </div>
       <div className="flex justify-center items-center">
         <input
           onChange={(e) => setSearchQuery(e.target.value)}
