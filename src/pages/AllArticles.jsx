@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import PagesHeader from "@/components/PagesHeader.jsx";
 import articlesImage from "@/assets/HeroImg03.jpg";
 import ArticleCard from "@/components/Cards/ArticleCard";
-import i18next, { t } from "i18next";
+import { useTranslation } from "react-i18next";
+
 
 export default function AllArticles() {
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const currentLang = i18next.language || "en";
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || "en";
 
   const getAllArticles = async () => {
     try {
@@ -43,7 +45,7 @@ export default function AllArticles() {
     });
 
     setFilteredArticles(filtered);
-  }, [searchQuery, articles, i18next.language]);
+  }, [searchQuery, articles, currentLang]);
 
   return (
     <>
@@ -67,7 +69,7 @@ export default function AllArticles() {
         {/* 🚫 لو مفيش مقالات */}
         {filteredArticles.length === 0 && (
           <h3 className="text-2xl font-semibold mb-4 text-secondary text-center p-12">
-            {t("articles.noResults") || "No articles found"}
+            {t("articles.noResults")}
           </h3>
         )}
 

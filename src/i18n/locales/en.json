@@ -35,7 +35,10 @@
         "nameInput": "Name",
         "emailInput": "Email",
         "texterea": "Message",
-        "button": "Submit"
+        "button": "Submit",
+        "successMessage": "Your message has been sent successfully.",
+        "errorMessage": "An error occurred while sending your message. Please try again later."
+
     },
 
     "copyRight": "© 2025 idata.center All rights reserved.",
@@ -48,6 +51,7 @@
         "allrticlesSlogan": "Discover the latest news and updates in the world of Data Center Cleaning.",
         "search": "Search",
         "pinnedArticles": "Pinned Articles",
+        "noResults": "No Articles Found",
         "items": {
             "1": {
                 "id": 1,
