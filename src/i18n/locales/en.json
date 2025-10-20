@@ -6,31 +6,21 @@
         "about": "About",
         "name": "Ashraf Almuhtaseb"
     },
-    "hero": {
-        "welcome": "Hello",
-        "intro": "I'm Ashraf Almuhtaseb"
-    },
     "about-me": {
         "title": "About Me",
-        "subTitle": "Data Center Cleaning Expert",
-        "slogan": "Precision. Reliability. Performance",
-        "content": "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
         "cvButton": "Download CV",
         "contactButton": "Contact Me"
     },
     "contact": {
         "title": "Contact Me",
         "1": {
-            "title": "Address",
-            "content": "Riyadh KSA"
+            "title": "Address"
         },
         "2": {
-            "title": "Email",
-            "content": "Ashraf@iData.center"
+            "title": "Email"
         },
         "3": {
-            "title": "Phone",
-            "content": "+966 545407722"
+            "title": "Phone"
         },
         "nameInput": "Name",
         "emailInput": "Email",
@@ -41,81 +31,13 @@
 
     },
 
-    "copyRight": "© 2025 idata.center All rights reserved.",
-
     "articles": {
         "sectionTitle": "Articles",
         "sectionSubtitle": "Our Latest Articles",
         "readMore": "Read More",
         "viewAll": "View All",
-        "allrticlesSlogan": "Discover the latest news and updates in the world of Data Center Cleaning.",
         "search": "Search",
         "pinnedArticles": "Pinned Articles",
-        "noResults": "No Articles Found",
-        "items": {
-            "1": {
-                "id": 1,
-                "title": "How to Start Your Own Business",
-                "description": "Learn how to start your business from scratch step by step with this practical guide.",
-                "image": "https://www.shutterstock.com/image-photo/data-centers-filled-rows-servers-600nw-2502153963.jpg",
-                "content": "<p>Starting your own business is more than just an idea — it’s a journey filled with challenges and opportunities. The first step is to identify a solid business idea that solves a real problem in the market, followed by researching your competitors and target audience carefully.</p><p><strong>Key Steps:</strong></p><ul><li>Define your business idea based on your passion or experience.</li><li>Conduct a financial and marketing feasibility study.</li><li>Create a clear business plan that includes goals and risks.</li><li>Build a capable team and start implementing gradually.</li></ul><p>Remember, success doesn’t come overnight. With consistency and good planning, you can build a successful and sustainable business.</p>"
-            },
-            "2": {
-                "id": 2,
-                "title": "Benefits of Digital Marketing",
-                "description": "Discover the many benefits of digital marketing and how it can help your business grow.",
-                "image": "https://media.istockphoto.com/id/2148123501/photo/big-data-structure-blocks-concept.jpg?s=612x612&w=0&k=20&c=PlEqZm4p-LB6Y6WbVNJigy7LyM9uxZVGO67rC_XI0a4=",
-                "content": "<p>Digital marketing is no longer a luxury — it’s a necessity for any business. It allows you to reach a wider audience, target specific customer segments, and analyze performance in real time.</p><p><strong>Main Advantages:</strong></p><ul><li>Lower marketing costs compared to traditional advertising.</li><li>Easy performance tracking and optimization through data.</li><li>Direct communication with customers via social media.</li><li>Higher sales through targeted advertising and e-commerce.</li></ul><p>Simply put, digital marketing is the fastest way to grow your brand in a highly competitive world.</p>"
-            },
-            "3": {
-                "id": 3,
-                "title": "How to Write a Business Plan",
-                "description": "Learn how to write a winning business plan for your startup or small company.",
-                "image": "https://media.istockphoto.com/id/1343315703/photo/exchanging-data-blue-digital-technology-innovation-computer-network.jpg?s=612x612&w=0&k=20&c=YMKYmEoIY3xlqO7MfLxbv10IQJsy9FFSae4vp3WaBMg=",
-                "content": "<p>A business plan is the roadmap that guides your company toward success. Without it, you’re navigating without direction or vision.</p><p><strong>Essential Components:</strong></p><ul><li>An executive summary that outlines your goals and business concept.</li><li>Market research and analysis of competitors and target customers.</li><li>Organizational structure and management team details.</li><li>Marketing strategy and financial projections.</li></ul><p>Your plan should be flexible and updated regularly as the market evolves — treat it as a decision-making tool, not just a formal document.</p>"
-            },
-            "4": {
-                "id": 4,
-                "title": "The Importance of Branding",
-                "description": "Discover why branding is essential for any business and how to build a strong brand identity.",
-                "image": "https://media.istockphoto.com/id/2148113350/photo/data-center-server-racks-it-modern-hardware-server-room-data-storage-center-database.jpg?s=612x612&w=0&k=20&c=6rMsjA_oGVjsSpFCed-Cg6h-9XPn8I3vPg8FWOQulos=",
-                "content": "<p>Brand identity is not just about logos and colors — it’s the overall impression your business leaves in people’s minds. It’s what sets you apart from competitors and builds long-term customer loyalty.</p><p><strong>Key Elements of a Strong Brand:</strong></p><ul><li>A unique logo that reflects your values.</li><li>Consistent colors and typography across all platforms.</li><li>A clear brand voice in all communications.</li><li>An outstanding customer experience that reinforces your image.</li></ul><p>Investing in branding early on helps you build credibility, trust, and a memorable presence in your market.</p>"
-            },
-            "5": {
-                "id": 5,
-                "title": "How to Manage Your Time Effectively",
-                "description": "Learn how to manage your time efficiently and achieve better results in less time.",
-                "image": "https://media.istockphoto.com/id/1495819409/photo/digital-mind-brain-artificial-intelligence-concept.jpg?s=612x612&w=0&k=20&c=_lIdPHOlIcUrFsZ-UwaG3xEkUu7dnM4NZK37zT0kokc=",
-                "content": "<p>Time management is one of the most valuable skills for success. Time is the only resource that can’t be regained, so it must be used wisely.</p><p><strong>Practical Tips:</strong></p><ul><li>Set your daily priorities clearly.</li><li>Use the Pomodoro Technique to maintain focus.</li><li>Avoid multitasking — it reduces productivity.</li><li>Take regular breaks to recharge and avoid burnout.</li></ul><p>By applying these habits, you’ll see noticeable improvement in productivity and lower stress levels.</p>"
-            },
-            "6": {
-                "id": 6,
-                "title": "The Future of E-Commerce",
-                "description": "Explore the future of e-commerce and how it will transform global business models.",
-                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg",
-                "content": "<p>E-commerce is evolving rapidly, driven by technology and changing consumer behavior. Online shopping has become a daily habit for millions worldwide.</p><p><strong>Emerging Trends:</strong></p><ul><li>Artificial Intelligence for personalized shopping experiences.</li><li>Social commerce — buying directly through social platforms.</li><li>Augmented Reality to preview products before purchase.</li><li>Advanced logistics and payment systems for faster delivery.</li></ul><p>The future belongs to digital commerce — those who adapt and innovate will lead the next generation of businesses.</p>"
-            },
-            "7": {
-                "id": 7,
-                "title": "The Power of Creativity",
-                "description": "Discover how creativity fuels innovation and drives success in any field.",
-                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg",
-                "isPinned": true
-            },
-            "8": {
-                "id": 8,
-                "title": "The Future of AI",
-                "description": "Explore the future of artificial intelligence and how it will impact various industries.",
-                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg",
-                "isPinned": true
-            },
-            "9": {
-                "id": 9,
-                "title": "The Power of Innovation",
-                "description": "Discover how innovation transforms businesses and drives growth.",
-                "image": "https://t3.ftcdn.net/jpg/01/23/12/38/360_F_123123866_EGxIsP6jRf1hLP56OHDUWHHyJF2Kkhfp.jpg",
-                "isPinned": true
-            }
-        }
+        "noResults": "No Articles Found"
     }
 }

@@ -21,7 +21,7 @@ const HeroSection =  function ({ homeData }) {
             style={{ backgroundImage: `url(${img})` }}
         >
             <div className='absolute inset-0 bg-black/70'></div>
-            <div className='relative text-white z-10 flex flex-col min-h-screen justify-center items-center gap-4 text-center'>
+            <div className='relative text-white z-10 flex flex-col min-h-screen justify-center items-center text-center'>
                 <h2 className='text-4xl md:text-[50px] font-extrabold'>
                     {title}
                 </h2>
