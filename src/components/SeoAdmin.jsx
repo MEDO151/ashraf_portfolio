@@ -34,9 +34,7 @@ export default function SeoAdmin({
 
       if (!token) throw new Error("يرجى تسجيل الدخول أولاً");
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/seo`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/seo`);
 
       if (!res.ok) throw new Error("حدث خطأ أثناء تحميل البيانات");
 

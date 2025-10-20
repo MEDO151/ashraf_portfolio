@@ -17,6 +17,7 @@ import CreateArticle from "./components/CreateArticle";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSeo } from "./components/SeoProvider";
 import { Helmet } from "react-helmet";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   useDirection();
@@ -54,6 +55,8 @@ function App() {
             <Route path="article/create" element={<CreateArticle />} />
             <Route path="contact" element={<ContactAdmin />} />
             <Route path="seo" element={<SeoAdmin />} />
+            <Route path="change-password" element={<ChangePassword />} />{" "}
+            {/* ✅ هنا */}
           </Route>
         </Route>
 

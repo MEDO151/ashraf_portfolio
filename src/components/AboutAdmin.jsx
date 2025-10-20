@@ -95,11 +95,6 @@ export default function AboutAdmin({
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
 
-      if (!token) {
-        alert("⚠️ يرجى تسجيل الدخول أولاً");
-        return;
-      }
-
       setIsSaving(true);
 
       const isBase64 =
@@ -127,7 +122,7 @@ export default function AboutAdmin({
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body), 
       });
 
       const result = await res.json();

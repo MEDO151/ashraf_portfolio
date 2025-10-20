@@ -36,14 +36,14 @@ export default function EditOneArticleAdmin() {
     setLoading(true);
     setError("");
     try {
-      const token = getToken();
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
       if (!token) throw new Error("Missing token");
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/articles/${slug}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        `${import.meta.env.VITE_API_URL}/articles/${slug}`
       );
 
       if (!res.ok) throw new Error("فشل في جلب البيانات");

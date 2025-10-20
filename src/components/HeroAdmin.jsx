@@ -11,16 +11,7 @@ export default function HeroAdmin() {
     setError("");
 
     try {
-      const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-      if (!token) throw new Error("Missing token");
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`);
 
       if (!res.ok) throw new Error("Failed to fetch data");
 

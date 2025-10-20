@@ -22,8 +22,6 @@ function ArticlesSection({  title, subTitle }) {
         console.error("Error fetching articles:", error);
       }
     };
-
-    console.log(articles);
     
   
     useEffect(() => {

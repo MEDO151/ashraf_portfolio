@@ -1,5 +1,5 @@
 // src/components/Sidebar.jsx
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const links = [
@@ -178,14 +178,15 @@ export default function Sidebar() {
         </nav>
       </div>
       <div className="border-t border-gray-200 pt-4 text-sm">
-        <div className="p-4 space-y-3">
-          <Button
-            onClick={logout}
-            variant={"outline"}
-            className="w-full px-3 text-center py-2 rounded-md"
-          >
-            تغير الرقم السري
-          </Button>
+        <div className="p-4 flex flex-col gap-3">
+          <Link to={"/admin/change-password"}>
+            <Button
+              variant={"outline"}
+              className="w-full px-3 text-center py-2 rounded-md"
+            >
+              تغير الرقم السري
+            </Button>
+          </Link>
           <Button
             onClick={logout}
             variant={"destructive"}
