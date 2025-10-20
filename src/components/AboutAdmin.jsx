@@ -300,7 +300,7 @@ export default function AboutAdmin({
                   loading="lazy"
                   alt="Hero image"
                   className="w-full h-44 object-cover rounded-md border"
-                  src={data.image}
+                  src={data.image || null}
                 />
                 <label className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-9 rounded-md px-3 flex items-center gap-2 text-sm font-medium">
                   <svg
