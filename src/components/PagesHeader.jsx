@@ -2,6 +2,7 @@ import React from "react";
 import HeaderImg from "@/assets/HeroImg02.jpg";
 
 export default function PagesHeader({ img, title, subtitle }) {
+
   img = img || HeaderImg;
   return (
     <>

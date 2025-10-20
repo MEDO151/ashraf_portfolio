@@ -17,7 +17,7 @@ export default function ContactSection() {
     const currentLang = i18next.language || "en";
 
     const getInfo = async () => {
-        const res = await fetch("http://16.171.133.67:8080/info");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/info`);
         const data = await res.json();
         setInfo(data);
     };
@@ -30,7 +30,7 @@ export default function ContactSection() {
         e.preventDefault();
         setStatus("loading");
         try {
-            const res = await fetch("http://16.171.133.67:8080/contact", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

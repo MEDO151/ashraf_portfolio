@@ -13,7 +13,7 @@ export default function Home() {
   const [homeData,setHomeData] = useState([]);
 
   const getHomeData = async () => {
-    const res = await fetch("http://16.171.133.67:8080/home-page");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`);
     const data = await res.json();
     setHomeData(data);
   }
@@ -25,6 +25,7 @@ export default function Home() {
 
   return (
     <>
+    
       <HeroSection homeData={homeData} />
       <Suspense fallback={<div>Loading...</div>}>
         <AboutMeSection homeData={homeData} />

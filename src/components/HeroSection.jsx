@@ -3,11 +3,11 @@ import i18next from "i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
-const HeroSection = function ({ homeData }) {
+const HeroSection =  function ({ homeData }) {
     if (!homeData || !homeData.header) return null;
 
     const linLink = "https://www.linkedin.com/in/ibnibrahem/";
-    const heroData = homeData.header;
+    const heroData = homeData.header ;
 
     const currentLang = i18next.language || "en";
 
@@ -16,7 +16,7 @@ const HeroSection = function ({ homeData }) {
     const img = heroData.imgUrl;
     return (
         <header
-            id='hero'
+            id='heroSection'
             className='relative min-h-screen bg-cover bg-center'
             style={{ backgroundImage: `url(${img})` }}
         >

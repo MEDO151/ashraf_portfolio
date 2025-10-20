@@ -1,5 +1,5 @@
 // src/components/Sidebar.jsx
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const links = [
@@ -144,6 +144,13 @@ const links = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    document.cookie = "token=; path=/; max-age=0";
+    navigate("/login");
+  };
+
   return (
     <aside
       className={`md:block bg-white text-black md:h-screen md:sticky md:top-0 w-64 shadow-xl`}
@@ -160,9 +167,7 @@ export default function Sidebar() {
               to={link.to}
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 rounded-md transition-colors ${
-                  isActive
-                    ? "bg-primary text-white"
-                    : "hover:bg-gray-100"
+                  isActive ? "bg-primary text-white" : "hover:bg-gray-100"
                 }`
               }
             >
@@ -170,17 +175,26 @@ export default function Sidebar() {
               <span className="text-sm">{link.label}</span>
             </NavLink>
           ))}
-
         </nav>
       </div>
-          <div className="border-t border-gray-200 pt-4 text-sm">
-            <div className="p-4">
-                <Button variant={'outline'} className="w-full px-3 text-center py-2 rounded-md">
-              تسجيل الخروج
-            </Button>
-            </div>
-          </div>
+      <div className="border-t border-gray-200 pt-4 text-sm">
+        <div className="p-4 space-y-3">
+          <Button
+            onClick={logout}
+            variant={"outline"}
+            className="w-full px-3 text-center py-2 rounded-md"
+          >
+            تغير الرقم السري
+          </Button>
+          <Button
+            onClick={logout}
+            variant={"destructive"}
+            className="w-full px-3 text-center py-2 rounded-md"
+          >
+            تسجيل الخروج
+          </Button>
+        </div>
+      </div>
     </aside>
   );
 }
- 

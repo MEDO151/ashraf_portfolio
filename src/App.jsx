@@ -14,12 +14,25 @@ import Login from "./pages/Login";
 import ArticleSectionAdmin from "./components/ArticleSectionAdmin";
 import EditOneArticleAdmin from "./components/EditOneArticleAdmin";
 import CreateArticle from "./components/CreateArticle";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useSeo } from "./components/SeoProvider";
+import { Helmet } from "react-helmet";
 
 function App() {
   useDirection();
+  const { seoData } = useSeo();
+
+  if (!seoData.title) return null; // انتظار البيانات قبل عرض الـ Helmet
 
   return (
     <>
+      <Helmet>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.desc} />
+        <meta name="keywords" content={seoData.keywords} />
+        {seoData.image && <link rel="icon" href={seoData.image} />}
+      </Helmet>
+
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
@@ -27,20 +40,33 @@ function App() {
           <Route path="/articles/:slug" element={<ArticleDetails />} />
         </Route>
 
-        <Route path="/admin" element={<DashboardLayout />}>
-          <Route index element={<Navigate to="hero" />} />
-          <Route path="hero" element={<HeroAdmin />} />
-          <Route path="about" element={<AboutAdmin />} />
-          <Route path="article" element={<ArticleAdmin />} />
-          <Route path="articlesection" element={<ArticleSectionAdmin />} />
-          <Route path="/admin/article/edit/:id" element={<EditOneArticleAdmin />} />
-          <Route path="/admin/article/create" element={<CreateArticle />} />
-
-          <Route path="contact" element={<ContactAdmin />} />
-          <Route path="seo" element={<SeoAdmin />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route index element={<Navigate to="hero" />} />
+            <Route path="hero" element={<HeroAdmin />} />
+            <Route path="about" element={<AboutAdmin />} />
+            <Route path="article" element={<ArticleAdmin />} />
+            <Route path="articlesection" element={<ArticleSectionAdmin />} />
+            <Route
+              path="article/edit/:slug"
+              element={<EditOneArticleAdmin />}
+            />
+            <Route path="article/create" element={<CreateArticle />} />
+            <Route path="contact" element={<ContactAdmin />} />
+            <Route path="seo" element={<SeoAdmin />} />
+          </Route>
         </Route>
 
         <Route path="/login" element={<Login />} />
+
+        <Route
+          path="*"
+          element={
+            <h1 className="h-screen text-3xl flex justify-center items-center">
+              404 - Page Not Found
+            </h1>
+          }
+        />
       </Routes>
     </>
   );
