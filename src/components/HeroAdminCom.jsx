@@ -43,7 +43,7 @@ export default function HeroAdminCom({
 
       if (!token) throw new Error("لم يتم العثور على رمز المصادقة");
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}${apiPath}`, {
+      const res = await fetch(`/api${apiPath}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -119,7 +119,7 @@ export default function HeroAdminCom({
             imageBase64: isBase64 ? data.image : null,
           };
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}${apiPath}`, {
+      const res = await fetch(`/api${apiPath}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

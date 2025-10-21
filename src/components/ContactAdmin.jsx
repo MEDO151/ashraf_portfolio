@@ -12,9 +12,7 @@ export default function ContactAdmin() {
     setError("");
 
     try {
-      
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/info`);
+      const res = await fetch(`/api/info`);
       if (!res.ok) throw new Error("فشل في تحميل البيانات من الخادم");
 
       const jsonData = await res.json();
@@ -53,11 +51,9 @@ export default function ContactAdmin() {
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
 
-
-
       setIsSaving(true);
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/info`, {
+      const res = await fetch(`/api/info`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

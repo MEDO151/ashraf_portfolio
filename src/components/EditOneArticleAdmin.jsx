@@ -42,9 +42,7 @@ export default function EditOneArticleAdmin() {
         ?.split("=")[1];
       if (!token) throw new Error("Missing token");
 
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/articles/${slug}`
-      );
+      const res = await fetch(`/api/articles/${slug}`);
 
       if (!res.ok) throw new Error("فشل في جلب البيانات");
       const result = await res.json();
@@ -129,17 +127,14 @@ export default function EditOneArticleAdmin() {
 
       console.log("🚀 البيانات المرسلة:", body);
 
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/articles/${slug}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(body),
-        }
-      );
+      const res = await fetch(`/api/articles/${slug}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
 
       const result = await res.json();
 

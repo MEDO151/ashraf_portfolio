@@ -1,10 +1,16 @@
-export default async function handler(request, response) {
+export default async function handler(req, res) {
   try {
-    const res = await fetch("http://16.171.133.67:8080/seo");
-    const data = await res.json();
-    response.status(200).json(data);
+    // هنجيب المسار اللي المستخدم طلبه
+    const path = req.url.replace(/^\/api/, ""); // يحذف /api من الطلب
+    const response = await fetch(`http://16.171.133.67:8080${path}`, {
+      method: req.method, // GET, POST, PUT ...الخ
+      headers: req.headers // لو في headers
+    });
+
+    const data = await response.json();
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error: "Failed to fetch from backend" });
+    res.status(500).json({ error: "Failed to fetch from backend" });
   }
 }

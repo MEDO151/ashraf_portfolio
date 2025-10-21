@@ -34,7 +34,7 @@ export default function SeoAdmin({
 
       if (!token) throw new Error("يرجى تسجيل الدخول أولاً");
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/seo`);
+      const res = await fetch(`/api/seo`);
 
       if (!res.ok) throw new Error("حدث خطأ أثناء تحميل البيانات");
 
@@ -119,7 +119,7 @@ export default function SeoAdmin({
         imageBase64: newImg,
       };
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/seo`, {
+      const res = await fetch(`/api/seo`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

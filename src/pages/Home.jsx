@@ -9,23 +9,20 @@ const ArticlesSection = React.lazy(() =>
 import { Suspense } from "react";
 
 export default function Home() {
-
-  const [homeData,setHomeData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
 
   const getHomeData = async () => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`);
+    const res = await fetch(`/api/home-page`);
     const data = await res.json();
     setHomeData(data);
-  }
+  };
 
   useEffect(() => {
-    getHomeData()
-  },[])
-
+    getHomeData();
+  }, []);
 
   return (
     <>
-    
       <HeroSection homeData={homeData} />
       <Suspense fallback={<div>Loading...</div>}>
         <AboutMeSection homeData={homeData} />

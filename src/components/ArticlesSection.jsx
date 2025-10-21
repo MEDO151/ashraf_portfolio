@@ -5,30 +5,26 @@ import { Button } from "./ui/button";
 import Header from "@/components/Header";
 import { Link } from "react-router-dom";
 
-function ArticlesSection({  title, subTitle }) {
-
-  const [articles,setArticles] = useState([])
+function ArticlesSection({ title, subTitle }) {
+  const [articles, setArticles] = useState([]);
 
   let titleText = title || t("articles.sectionTitle");
   let subTitleText = subTitle || t("articles.sectionSubtitle");
-   const currentLang = i18next.language || "en";
-   const getAllArticles = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/articles-page`);
-        const data = await res.json();
-  
-        setArticles(data.articleDtoList || []);;
-      } catch (error) {
-        console.error("Error fetching articles:", error);
-      }
-    };
-    
-  
-    useEffect(() => {
-      getAllArticles();
-    }, []);
+  const currentLang = i18next.language || "en";
+  const getAllArticles = async () => {
+    try {
+      const res = await fetch(`/api/articles-page`);
+      const data = await res.json();
 
-  
+      setArticles(data.articleDtoList || []);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAllArticles();
+  }, []);
 
   return (
     <>
@@ -41,15 +37,19 @@ function ArticlesSection({  title, subTitle }) {
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 ">
-            {articles.filter((article) => article.isPinned).length >
-              0 &&
+            {articles.filter((article) => article.isPinned).length > 0 &&
               articles
                 .filter((article) => article.isPinned)
                 .map((article) => (
                   <ArticleCard
                     key={article.slug}
                     title={article.header.title?.[currentLang]}
-                    description={article.header.desc?.[currentLang].split(' ').slice(0,20).join(' ') + '....'}
+                    description={
+                      article.header.desc?.[currentLang]
+                        .split(" ")
+                        .slice(0, 20)
+                        .join(" ") + "...."
+                    }
                     image={article.header?.imgUrl}
                     id={article.slug}
                   />

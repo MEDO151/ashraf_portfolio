@@ -13,7 +13,7 @@ export default function AllArticles() {
 
   const getAllArticles = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles-page`);
+      const res = await fetch(`/api/articles-page`);
       const data = await res.json();
 
       setPageData(data.header);
@@ -86,7 +86,12 @@ export default function AllArticles() {
                 <ArticleCard
                   key={article.slug}
                   title={article.header.title[currentLang]}
-                  description={article.header.desc[currentLang].split(' ').slice(0,10).join(' ')+'.....'}
+                  description={
+                    article.header.desc[currentLang]
+                      .split(" ")
+                      .slice(0, 10)
+                      .join(" ") + "....."
+                  }
                   image={article.header.imgUrl}
                   id={article.slug}
                 />
@@ -102,7 +107,12 @@ export default function AllArticles() {
               <ArticleCard
                 key={article.slug}
                 title={article.header.title[currentLang]}
-                description={article.header.desc[currentLang].split(' ').slice(0,10).join(' ')+'.....'}
+                description={
+                  article.header.desc[currentLang]
+                    .split(" ")
+                    .slice(0, 10)
+                    .join(" ") + "....."
+                }
                 image={article.header.imgUrl}
                 id={article.slug}
               />

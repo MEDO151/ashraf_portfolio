@@ -16,7 +16,7 @@ export default function Login() {
     setSuccessMessage("");
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+      const res = await fetch(`/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,10 @@ export default function Login() {
         )}
 
         {successMessage && (
-          <div dir="rtl" className="text-green-600 text-center mb-4 font-medium">
+          <div
+            dir="rtl"
+            className="text-green-600 text-center mb-4 font-medium"
+          >
             {successMessage}
           </div>
         )}
@@ -91,21 +94,55 @@ export default function Login() {
             type="button"
             onClick={() => setShowPassword((s) => !s)}
             aria-pressed={showPassword}
-            aria-label={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            aria-label={
+              showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
+            }
             className="absolute top-1/2 right-3 transform -translate-y-1/2 p-1 text-sm"
           >
             {/* أيقونة بسيطة: عين أو عين مقطوعة */}
             {showPassword ? (
               // أيقونة عين مفتوحة (يمكن استبدال بأيقونة من مكتبتك)
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
               </svg>
             ) : (
               // أيقونة عين مقفولة
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.269-2.943-9.543-7a9.956 9.956 0 012.4-3.455M3 3l18 18" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.88 9.88A3 3 0 0014.12 14.12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.269-2.943-9.543-7a9.956 9.956 0 012.4-3.455M3 3l18 18"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9.88 9.88A3 3 0 0014.12 14.12"
+                />
               </svg>
             )}
           </button>

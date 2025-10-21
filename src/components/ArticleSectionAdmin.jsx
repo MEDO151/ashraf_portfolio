@@ -6,7 +6,7 @@ export default function ArticleSectionAdmin() {
 
   const getArticlesData = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles-page`);
+      const res = await fetch(`/api/articles-page`);
       const data = await res.json();
       setArticlesData(data);
     } catch (err) {

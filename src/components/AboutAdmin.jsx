@@ -32,7 +32,7 @@ export default function AboutAdmin({
 
       if (!token) throw new Error("Missing token");
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`, {
+      const res = await fetch(`/api/home-page`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -116,13 +116,13 @@ export default function AboutAdmin({
         aboutMeImageBase64: isBase64 ? data.image : null,
       };
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`, {
+      const res = await fetch(`/api/home-page`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(body), 
+        body: JSON.stringify(body),
       });
 
       const result = await res.json();

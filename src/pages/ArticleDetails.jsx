@@ -12,7 +12,7 @@ export default function ArticleDetails() {
 
   const getArticleBySlug = async (slug) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles/${slug}`);
+      const res = await fetch(`/api/articles/${slug}`);
       const data = await res.json();
       setArticle(data);
     } catch (error) {

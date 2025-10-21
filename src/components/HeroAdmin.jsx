@@ -11,7 +11,7 @@ export default function HeroAdmin() {
     setError("");
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`);
+      const res = await fetch(`/api/home-page`);
 
       if (!res.ok) throw new Error("Failed to fetch data");
 

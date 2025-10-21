@@ -11,7 +11,7 @@ export default function ArticleAdmin() {
   // 🧠 دالة لجلب كل المقالات من السيرفر
   const getAllArticles = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+      const res = await fetch(`/api/articles`);
       const data = await res.json();
       setArticles(data);
       setFilteredArticles(data);
@@ -54,16 +54,13 @@ export default function ArticleAdmin() {
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/articles/${slug}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(`/api/articles/${slug}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (res.ok) {
         setArticles((prev) => prev.filter((a) => a.slug !== slug));
