@@ -3,7 +3,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 
-export default function RichTextEditor({ value = "<p>ابدأ الكتابة هنا...</p>", dir, align = "left", onChange }) {
+export default function RichTextEditor({ value , dir, align = "left", onChange }) {
   const [currentBlock, setCurrentBlock] = useState("paragraph");
   const [formats, setFormats] = useState({
     bold: false,
@@ -17,7 +17,7 @@ export default function RichTextEditor({ value = "<p>ابدأ الكتابة ه�
       StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
-    content: value || "<p>ابدأ الكتابة هنا...</p>",
+    content: value ,
     editorProps: {
       attributes: {
         dir: dir,

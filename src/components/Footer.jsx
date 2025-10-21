@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import i18next, { t } from "i18next";
+import i18next from "i18next";
 
 export default function Footer() {
     const [info, setInfo] = useState({});

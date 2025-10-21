@@ -53,10 +53,7 @@ export default function ContactAdmin() {
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
 
-      if (!token) {
-        alert("⚠️ يرجى تسجيل الدخول أولاً.");
-        return;
-      }
+
 
       setIsSaving(true);
 
