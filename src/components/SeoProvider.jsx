@@ -14,7 +14,7 @@ export function SeoProvider({ children }) {
   useEffect(() => {
     const fetchSeo = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/seo`);
+        const res = await fetch(`/api/seo`);
 
         if (!res.ok) throw new Error("حدث خطأ أثناء جلب البيانات");
 
