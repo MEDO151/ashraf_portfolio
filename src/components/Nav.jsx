@@ -50,7 +50,7 @@ export default function Nav() {
       sections.forEach((section) => observer.observe(section));
 
       return () => observer.disconnect();
-    }, 2000); // انتظار بسيط لتأكّد من تحميل الـ DOM
+    }, 5000); // انتظار بسيط لتأكّد من تحميل الـ DOM
 
     return () => clearTimeout(timeout);
   }, [location.pathname]); //  يعيد التنفيذ عند تغيّر الصفحة
