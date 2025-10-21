@@ -1,30 +1,33 @@
 import React from "react";
-import HeroImg from "@/assets/HeroImg01.jpg";
-import { t } from "i18next";
-
+import i18next from "i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
-const HeroSection = function ({ img, linLink }) {
-    img = img || HeroImg;
-    linLink = linLink || "https://www.linkedin.com/in/ibnibrahem/";
+const HeroSection =  function ({ homeData }) {
+    if (!homeData || !homeData.header) return null;
 
+    const linLink = "https://www.linkedin.com/in/ibnibrahem/";
+    const heroData = homeData.header ;
+
+    const currentLang = i18next.language || "en";
+
+    const title = heroData.title[currentLang];
+    const desc = heroData.desc[currentLang];
+    const img = heroData.imgUrl;
     return (
         <header
-            id='hero'
+            id='heroSection'
             className='relative min-h-screen bg-cover bg-center'
             style={{ backgroundImage: `url(${img})` }}
         >
             <div className='absolute inset-0 bg-black/70'></div>
-
-            <div className='relative text-white z-10 flex flex-col min-h-screen justify-center items-center gap-4 text-center'>
+            <div className='relative text-white z-10 flex flex-col min-h-screen justify-center items-center text-center'>
                 <h2 className='text-4xl md:text-[50px] font-extrabold'>
-                    {t("hero.welcome")}
+                    {title}
                 </h2>
-                <h1 className='!font-light text-4xl md:text-6xl'>
-                    {t("hero.intro")}
+                <h1 className='!font-light leading-[1.2] text-4xl md:text-6xl'>
+                    {desc}
                 </h1>
-
                 <div className='flex gap-4npm'>
                     <a
                         href={linLink}

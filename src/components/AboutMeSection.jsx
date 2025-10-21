@@ -1,21 +1,22 @@
 import React from "react";
-import { t } from "i18next";
+import i18next,{ t } from "i18next";
 import { Button } from "@/components/ui/button";
-import profilePic from "@/assets/ProfilePic.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
-import ArticleCard from "@/components/Cards/ArticleCard";
 
-function AboutMeSection({ image, title, subTitle, desc, slogan, cvLink }) {
-    image = image || profilePic;
-    title = title || t("about-me.title");
-    subTitle = subTitle || t("about-me.subTitle");
-    desc = desc || t("about-me.content");
-    slogan = slogan || t("about-me.slogan");
-    cvLink = cvLink || "https://www.linkedin.com/in/ibnibrahem/";
+function AboutMeSection({ homeData }) {
+    if (!homeData || !homeData.header) return null;
+    const aboutData = homeData.aboutMe;
+    const currentLang = i18next.language || "en";
 
-    // about-me w-full flex flex-col lg:flex-row justify-center items-center gap-5
-    // md:w-4/5 lg:w-2/4
+    const image = aboutData.imgUrl;
+    const title = t("about-me.title"); 
+    const subTitle = aboutData.title[currentLang];
+    const desc = aboutData.desc[currentLang];
+    const slogan = aboutData.keywords[currentLang];
+    let cvLink = "https://www.idata.center/gallery/Enhancing%20DC%20Cleaning%20Expertise%20-%20Ashraf%20Almuhtaseb.pdf";
+
+
     return (
         <>
             <section id='about' className=' pt-20 pb-12  bg-white'>
@@ -23,6 +24,7 @@ function AboutMeSection({ image, title, subTitle, desc, slogan, cvLink }) {
                     <div className='grid grid-cols-1 lg:grid-cols-3 justify-center items-center  gap-5 md:gap-10 px-0 md:px-10 '>
                         <div className='about__img-wrapper lg:col-span-1 '>
                             <img
+                                loading='lazy'
                                 src={image}
                                 alt='Ashraf Almuhtaseb'
                                 className='about__img  w-full object-cover '
@@ -52,9 +54,11 @@ function AboutMeSection({ image, title, subTitle, desc, slogan, cvLink }) {
                                     />
                                     {t("about-me.cvButton")}
                                 </Button>
-                                <Button variant='outline' size='cv'>
+                                <a href="#contact">
+                                <Button variant='outline' size='cv' >
                                     {t("about-me.contactButton")}
                                 </Button>
+                                </a>
                             </div>
                         </div>
                     </div>
