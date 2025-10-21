@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
 import PagesHeader from "@/components/PagesHeader.jsx";
-import articlesImage from "@/assets/HeroImg03.jpg";
 import ArticleCard from "@/components/Cards/ArticleCard";
-import i18next, { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function AllArticles() {
-  const [articles, setArticles] = useState([]);
+  const [pageData, setPageData] = useState(null); // كل بيانات الصفحة
+  const [articles, setArticles] = useState([]); // المقالات فقط
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const currentLang = i18next.language || "en";
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || "en";
 
   const getAllArticles = async () => {
     try {
-      const res = await fetch("http://16.171.133.67:8080/articles");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles-page`);
       const data = await res.json();
-      setArticles(data);
-      setFilteredArticles(data);
+
+      setPageData(data.header);
+      setArticles(data.articleDtoList || []);
+      setFilteredArticles(data.articleDtoList || []);
     } catch (error) {
       console.error("Error fetching articles:", error);
     }
@@ -28,7 +31,6 @@ export default function AllArticles() {
   useEffect(() => {
     if (!articles) return;
 
-    // لو المستخدم ما كتبش حاجة في البحث
     if (searchQuery.trim() === "") {
       setFilteredArticles(articles);
       return;
@@ -43,14 +45,15 @@ export default function AllArticles() {
     });
 
     setFilteredArticles(filtered);
-  }, [searchQuery, articles, i18next.language]);
+  }, [searchQuery, articles, currentLang]);
 
   return (
     <>
+      {/* ✅ قسم الهيدر */}
       <PagesHeader
-        img={articlesImage}
-        title={t("articles.sectionTitle")}
-        subtitle={t("articles.allrticlesSlogan")}
+        img={pageData?.imgUrl}
+        title={pageData?.title?.[currentLang]}
+        subtitle={pageData?.desc?.[currentLang]}
       />
 
       <section className="allArticles bg-background py-8">
@@ -64,10 +67,10 @@ export default function AllArticles() {
           />
         </div>
 
-        {/* 🚫 لو مفيش مقالات */}
+        {/* 🚫 لا توجد نتائج */}
         {filteredArticles.length === 0 && (
           <h3 className="text-2xl font-semibold mb-4 text-secondary text-center p-12">
-            {t("articles.noResults") || "No articles found"}
+            {t("articles.noResults")}
           </h3>
         )}
 
@@ -81,9 +84,9 @@ export default function AllArticles() {
               .filter((article) => article.isPinned)
               .map((article) => (
                 <ArticleCard
-                  key={article._id}
+                  key={article.slug}
                   title={article.header.title[currentLang]}
-                  description={article.header.desc[currentLang]}
+                  description={article.header.desc[currentLang].split(' ').slice(0,10).join(' ')+'.....'}
                   image={article.header.imgUrl}
                   id={article.slug}
                 />
@@ -91,17 +94,19 @@ export default function AllArticles() {
           </div>
         )}
 
-        {/* 📰 كل المقالات */}
+        {/* 📰 باقي المقالات */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-12">
-          {filteredArticles.map((article) => (
-            <ArticleCard
-              key={article._id}
-              title={article.header.title[currentLang]}
-              description={article.header.desc[currentLang]}
-              image={article.header.imgUrl}
-              id={article.slug}
-            />
-          ))}
+          {filteredArticles
+            .filter((article) => !article.isPinned)
+            .map((article) => (
+              <ArticleCard
+                key={article.slug}
+                title={article.header.title[currentLang]}
+                description={article.header.desc[currentLang].split(' ').slice(0,10).join(' ')+'.....'}
+                image={article.header.imgUrl}
+                id={article.slug}
+              />
+            ))}
         </div>
       </section>
     </>

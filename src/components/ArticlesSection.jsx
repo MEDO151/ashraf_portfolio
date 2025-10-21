@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArticleCard from "@/components/Cards/ArticleCard";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 import { Button } from "./ui/button";
 import Header from "@/components/Header";
 import { Link } from "react-router-dom";
 
-function ArticlesSection({ articles, title, subTitle }) {
+function ArticlesSection({  title, subTitle }) {
+
+  const [articles,setArticles] = useState([])
+
   let titleText = title || t("articles.sectionTitle");
   let subTitleText = subTitle || t("articles.sectionSubtitle");
-  let homeArticles = articles || t("articles.items", { returnObjects: true });
+   const currentLang = i18next.language || "en";
+   const getAllArticles = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/articles-page`);
+        const data = await res.json();
+  
+        setArticles(data.articleDtoList || []);;
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+    
+  
+    useEffect(() => {
+      getAllArticles();
+    }, []);
 
-  const allArticlesArray = Array.isArray(homeArticles)
-    ? homeArticles
-    : Object.values(homeArticles);
+  
 
   return (
     <>
@@ -25,17 +41,17 @@ function ArticlesSection({ articles, title, subTitle }) {
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 ">
-            {allArticlesArray.filter((article) => article.isPinned).length >
+            {articles.filter((article) => article.isPinned).length >
               0 &&
-              allArticlesArray
+              articles
                 .filter((article) => article.isPinned)
-                .map((article, id) => (
+                .map((article) => (
                   <ArticleCard
-                    key={id}
-                    title={article.title}
-                    description={article.description}
-                    image={article.image}
-                    id={article.id}
+                    key={article.slug}
+                    title={article.header.title?.[currentLang]}
+                    description={article.header.desc?.[currentLang].split(' ').slice(0,20).join(' ') + '....'}
+                    image={article.header?.imgUrl}
+                    id={article.slug}
                   />
                 ))}
           </div>

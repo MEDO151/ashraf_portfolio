@@ -1,30 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export default function AboutAdmin({
   title = "تحرير قسم من أنا",
   description = "إدارة محتوى من أنا في الصفحة الرئيسية",
   sectionTitle = "من أنا",
-  initialData = {},
-  onSave,
 }) {
+  const [homeData, setHomeData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
   const [data, setData] = useState({
-    titleAr: initialData.titleAr || "نبذة عني.",
-    titleEn: initialData.titleEn || "About Me.",
-    subtitleAr: initialData.subtitleAr || "خبير في تنظيف مراكز البيانات",
-    subtitleEn: initialData.subtitleEn || "Data Center Cleaning Expert",
-    descriptionAr:
-      initialData.descriptionAr ||
-      "أنا أشرف المحتسب، خبير في تنظيف مراكز البيانات أعمل على رفع كفاءة واستدامة بيئات العمل التقنية من خلال حلول احترافية تضمن أعلى معايير السلامة والجودة. أسعى دائمًا إلى تحقيق التوازن بين النظافة الدقيقة وكفاءة التشغيل لضمان جاهزية الأنظمة و  استمراريتها.",
-    descriptionEn:
-      initialData.descriptionEn ||
-      "I'm Ashraf Almuhtaseb, a Data Center Cleaning Expert dedicated to enhancing operational efficiency and sustainability through professional, high-standard cleaning solutions. My focus is on achieving the perfect balance between precision, reliability, and performance continuity.",
-    sloganAr: initialData.sloganAr || '"الدقة | الموثوقية | الأداء"',
-    sloganEn: initialData.sloganEn || '"Precision. Reliability. Performance"',
-    image:
-      initialData.image ||
-      "https://res.cloudinary.com/djjron2p6/image/upload/v1751298756/eb6mycoxcap3ua76pube.png",
+    subtitleAr: "",
+    subtitleEn: "",
+    descriptionAr: "",
+    descriptionEn: "",
+    sloganAr: "",
+    sloganEn: "",
+    image: "",
   });
+
+  // ✅ جلب بيانات "من أنا"
+  const getHomeData = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      if (!token) throw new Error("Missing token");
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error("فشل في جلب البيانات");
+
+      const result = await res.json();
+      setHomeData(result.aboutMe);
+    } catch (err) {
+      console.error(err);
+      setError("حدث خطأ أثناء تحميل البيانات");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getHomeData();
+  }, []);
+
+  // ✅ ملء البيانات بعد الجلب
+  useEffect(() => {
+    if (homeData) {
+      setData({
+        subtitleAr: homeData.title?.ar || "",
+        subtitleEn: homeData.title?.en || "",
+        descriptionAr: homeData.desc?.ar || "",
+        descriptionEn: homeData.desc?.en || "",
+        sloganAr: homeData.keywords?.ar || "",
+        sloganEn: homeData.keywords?.en || "",
+        image: homeData.imgUrl || "",
+      });
+    }
+  }, [homeData]);
 
   // ✅ تحديث أي حقل
   const handleChange = (e) => {
@@ -32,20 +75,81 @@ export default function AboutAdmin({
     setData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // ✅ تغيير الصورة
+  // ✅ تغيير الصورة وتحويلها إلى Base64
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setData((prev) => ({ ...prev, image: imageURL }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  // ✅ عند الحفظ
-  const handleSave = () => {
-    if (onSave) onSave(data);
-    else console.log("البيانات:", data);
+  // ✅ الحفظ (API update)
+  const handleSave = async () => {
+    try {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      setIsSaving(true);
+
+      const isBase64 =
+        typeof data.image === "string" && data.image.startsWith("data:");
+
+      const body = {
+        aboutMeTitle: {
+          ar: data.subtitleAr || "",
+          en: data.subtitleEn || "",
+        },
+        aboutMeDesc: {
+          ar: data.descriptionAr || "",
+          en: data.descriptionEn || "",
+        },
+        aboutMeKeyWords: {
+          ar: data.sloganAr || "",
+          en: data.sloganEn || "",
+        },
+        aboutMeImageBase64: isBase64 ? data.image : null,
+      };
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/home-page`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body), 
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        const msg = result?.error || result?.message || "فشل في تحديث البيانات";
+        throw new Error(msg);
+      }
+
+      setHomeData(result.aboutMe);
+      alert("✅ تم حفظ التغييرات بنجاح!");
+    } catch (err) {
+      console.error(err);
+      alert("حدث خطأ أثناء حفظ البيانات: " + err.message);
+    } finally {
+      setIsSaving(false);
+    }
   };
+
+  // ✅ حالات التحميل أو الخطأ
+  if (loading)
+    return (
+      <p className="flex justify-center items-center min-h-screen text-xl font-semibold">
+        جارٍ تحميل البيانات...
+      </p>
+    );
+  if (error) return <p className="text-center text-red-600">{error}</p>;
 
   return (
     <>
@@ -59,24 +163,53 @@ export default function AboutAdmin({
           size="cv"
           className="py-1 text-lg flex gap-1"
           onClick={handleSave}
+          disabled={isSaving}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-save h-4 w-4 mr-2 rtl:ml-2 rtl:mr-0"
-          >
-            <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
-            <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
-            <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
-          </svg>
-          حفظ
+          {isSaving ? (
+            <>
+              <svg
+                className="animate-spin h-4 w-4 mr-2 rtl:ml-2 rtl:mr-0"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+              جاري الحفظ...
+            </>
+          ) : (
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-save h-4 w-4 mr-2 rtl:ml-2 rtl:mr-0"
+              >
+                <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+                <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+              </svg>
+              حفظ
+            </>
+          )}
         </Button>
       </div>
 
@@ -106,8 +239,6 @@ export default function AboutAdmin({
           {/* الحقول النصية */}
           <div className="flex flex-col gap-4">
             {[
-              { id: "titleAr", label: "العنوان (عربي)", dir: "rtl" },
-              { id: "titleEn", label: "العنوان (إنجليزي)", dir: "ltr" },
               {
                 id: "subtitleAr",
                 label: "العنوان الفرعي (عربي)",
@@ -166,10 +297,10 @@ export default function AboutAdmin({
             <div className="border rounded-md p-3 w-full">
               <div className="relative">
                 <img
-                loading="lazy"
+                  loading="lazy"
                   alt="Hero image"
                   className="w-full h-44 object-cover rounded-md border"
-                  src={data.image}
+                  src={data.image || null}
                 />
                 <label className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-9 rounded-md px-3 flex items-center gap-2 text-sm font-medium">
                   <svg

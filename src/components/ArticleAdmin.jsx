@@ -1,129 +1,100 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import i18next, { t } from "i18next";
+import { t } from "i18next";
 
-export default function ArticleAdmin({ articles }) {
-  const initialArticles = Array.isArray(articles)
-    ? articles
-    : Object.values(articles || t("articles.items", { returnObjects: true }));
-
-  const [allArticles, setAllArticles] = useState(initialArticles);
-  const [filteredArticles, setFilteredArticles] = useState(initialArticles);
+export default function ArticleAdmin() {
+  const [articles, setArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // 🧠 دالة لجلب كل المقالات من السيرفر
+  const getAllArticles = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+      const data = await res.json();
+      setArticles(data);
+      setFilteredArticles(data);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    }
+  };
+
+  // 🕓 تحميل المقالات أول مرة
   useEffect(() => {
-    if (!searchQuery) {
-      setFilteredArticles(allArticles);
+    getAllArticles();
+  }, []);
+
+  // 🔍 فلترة المقالات حسب البحث
+  useEffect(() => {
+    if (!articles) return;
+
+    if (searchQuery.trim() === "") {
+      setFilteredArticles(articles);
       return;
     }
 
     const query = searchQuery.toLowerCase();
-    const filtered = allArticles.filter(
-      (article) =>
-        article.title.toLowerCase().includes(query) ||
-        article.description.toLowerCase().includes(query)
-    );
-    setFilteredArticles(filtered);
-  }, [searchQuery, allArticles]);
 
-  const handleDelete = (id) => {
-    if (window.confirm("هل أنت متأكد من حذف هذا المقال؟")) {
-      const updated = allArticles.filter((_, index) => index !== id);
-      setAllArticles(updated);
-      setFilteredArticles(updated);
+    const filtered = articles.filter((article) => {
+      const title = article.header.title.ar?.toLowerCase() || "";
+      const desc = article.header.desc.ar?.toLowerCase() || "";
+      return title.includes(query) || desc.includes(query);
+    });
+
+    setFilteredArticles(filtered);
+  }, [searchQuery, articles]);
+
+  // 🗑️ حذف مقال
+  const handleDelete = async (slug) => {
+    if (!window.confirm("هل أنت متأكد من حذف هذا المقال؟")) return;
+
+    try {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/articles/${slug}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (res.ok) {
+        setArticles((prev) => prev.filter((a) => a.slug !== slug));
+        setFilteredArticles((prev) => prev.filter((a) => a.slug !== slug));
+        alert("✅ تم حذف المقال بنجاح");
+      } else {
+        const errorData = await res.json();
+        alert(errorData?.error || "حدث خطأ أثناء الحذف!");
+      }
+    } catch (error) {
+      console.error("Error deleting article:", error);
+      alert("تعذر حذف المقال، حاول مرة أخرى");
     }
   };
 
-  const renderArticleCard = (article, id) => (
-    <div
-      key={id}
-      className="group flex flex-col bg-white shadow-[0_0_30px_5px_rgba(0,0,0,0.055)] border border-slate-200 rounded-md hover:shadow-lg transition-shadow duration-300"
-    >
-      <div className="overflow-hidden">
-        <img
-          className="w-full h-[200px] object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform group-hover:scale-110"
-          src={article.image}
-          alt={article.title}
-        />
-      </div>
-
-      <div className="px-3 py-4 flex flex-col justify-between gap-4 flex-grow text-center text-secondary">
-        <h6 className="text-2xl font-semibold text-primary">
-          {article.title.split(" ").slice(0, 3).join(" ")}
-        </h6>
-        <p className="font-medium">
-          {article.description.split(" ").slice(0, 6).join(" ")}
-        </p>
-
-        <div className="flex justify-between items-center">
-          <Link to={`/admin/article/edit/${id}`} className="w-fit">
-            <Button className="py-2 px-3" size="lg">
-              تعديل
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-square-pen h-4 w-4 ml-2"
-              >
-                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
-              </svg>
-            </Button>
-          </Link>
-
-          <Button
-            className="bg-red-600 hover:bg-red-700"
-            onClick={() => handleDelete(id)}
-          >
-            حذف
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-trash2 h-4 w-4 ml-2"
-            >
-              <path d="M3 6h18" />
-              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-              <line x1="10" x2="10" y1="11" y2="17" />
-              <line x1="14" x2="14" y1="11" y2="17" />
-            </svg>
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-
+  // ✅ المقالات المثبتة وغير المثبتة
   const pinnedArticles = filteredArticles.filter((a) => a.isPinned);
   const otherArticles = filteredArticles.filter((a) => !a.isPinned);
 
   return (
-    <main>
+    <main className="p-8">
+      {/* ✅ الهيدر */}
       <div className="flex justify-between mb-10 items-center">
-        <div>
-          <h1 className="text-2xl text-primary font-bold mb-1">
-            إدارة المقالات
-          </h1>
-        </div>
-        <Link to={"/admin/article/create"}>
+        <h1 className="text-2xl text-primary font-bold mb-1">إدارة المقالات</h1>
+
+        <Link to="/admin/article/create">
           <Button size="cv" className="py-2 text-md flex gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -139,6 +110,8 @@ export default function ArticleAdmin({ articles }) {
           </Button>
         </Link>
       </div>
+
+      {/* 🔍 مربع البحث */}
       <div className="flex justify-center items-center">
         <input
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -148,27 +121,103 @@ export default function ArticleAdmin({ articles }) {
         />
       </div>
 
-      {filteredArticles.length === 0 ? (
+      {/* 🚫 في حالة عدم وجود نتائج */}
+      {filteredArticles.length === 0 && (
         <h3 className="text-2xl font-semibold mb-4 text-secondary text-center p-12">
           لا توجد مقالات مطابقة
         </h3>
-      ) : (
-        <>
-          {pinnedArticles.length > 0 && (
-            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6 border border-gray-300 container rounded-md">
-              <span className="absolute -top-3 left-5 bg-background px-3 text-sm font-bold text-gray-700">
-                🧷 {t("articles.pinnedArticles")}
-              </span>
-              {pinnedArticles.map(renderArticleCard)}
-            </div>
-          )}
-
-          {/* 📚 all */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-12">
-            {otherArticles.map(renderArticleCard)}
-          </div>
-        </>
       )}
+
+      {/* 📌 المقالات المثبتة */}
+      {pinnedArticles.length > 0 && (
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6 border border-gray-300 container rounded-md">
+          <span className="absolute -top-3 left-5 bg-background px-3 text-sm font-bold text-gray-700">
+            🧷 {t("articles.pinnedArticles")}
+          </span>
+
+          {pinnedArticles.map((article) => (
+            <div
+              key={article._id}
+              className="group flex flex-col bg-white shadow border border-slate-200 rounded-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="overflow-hidden">
+                <img
+                  className="w-full h-[200px] object-cover transition-transform duration-700 transform group-hover:scale-110"
+                  src={article.header.imgUrl}
+                  alt={article.header.title.ar}
+                />
+              </div>
+              <div className="px-3 py-4 flex flex-col justify-between gap-4 flex-grow text-center text-secondary">
+                <h6 className="text-2xl font-semibold text-primary">
+                  {article.header.title.ar}
+                </h6>
+                <p className="font-medium line-clamp-3">
+                  {article.header.desc.ar}
+                </p>
+
+                <div className="flex justify-between items-center">
+                  <Link
+                    to={`/admin/article/edit/${article.slug}`}
+                    className="w-fit"
+                  >
+                    <Button className="py-2 px-3" size="lg">
+                      تعديل
+                    </Button>
+                  </Link>
+                  <Button
+                    className="bg-red-600 hover:bg-red-700"
+                    onClick={() => handleDelete(article.slug)}
+                  >
+                    حذف
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* 📰 باقي المقالات */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-12">
+        {otherArticles.map((article) => (
+          <div
+            key={article._id}
+            className="group flex flex-col bg-white shadow border border-slate-200 rounded-md hover:shadow-lg transition-shadow duration-300"
+          >
+            <div className="overflow-hidden">
+              <img
+                className="w-full h-[200px] object-cover transition-transform duration-700 transform group-hover:scale-110"
+                src={article.header.imgUrl}
+                alt={article.header.title.ar}
+              />
+            </div>
+            <div className="px-3 py-4 flex flex-col justify-between gap-4 flex-grow text-center text-secondary">
+              <h6 className="text-2xl font-semibold text-primary">
+                {article.header.title.ar}
+              </h6>
+              <p className="font-medium line-clamp-3">
+                {article.header.desc.ar}
+              </p>
+              <div className="flex justify-between items-center">
+                <Link
+                  to={`/admin/article/edit/${article.slug}`}
+                  className="w-fit"
+                >
+                  <Button className="py-2 px-3" size="lg">
+                    تعديل
+                  </Button>
+                </Link>
+                <Button
+                  className="bg-red-600 hover:bg-red-700"
+                  onClick={() => handleDelete(article.slug)}
+                >
+                  حذف
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }

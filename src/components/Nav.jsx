@@ -6,22 +6,21 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [navFixed, setNavFixed] = useState(false);
-  const location = useLocation(); // 🔄 لتتبع تغيّر الصفحات
+  const [navFixed, setNavFixed] = useState(true);
+  const location = useLocation();
 
   const navItems = ["home", "about", "articles", "contact"];
 
-// غلق قائمة الموبايل تلقائيًا عند تكبير الشاشة
   useEffect(() => {
-  const handleResize = () => {
-    if (window.innerWidth >= 768) {
-      setMenuOpen(false);
-    }
-  };
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // منع التمرير عند فتح القائمة في الموبايل
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function Nav() {
     setNavFixed(false); // إعادة التهيئة عند كل تنقّل
 
     const timeout = setTimeout(() => {
-      const sections = ["#hero", "#allArticles", '#article']
+      const sections = ["#heroSection", "#allArticles", "#article"]
         .map((id) => document.querySelector(id))
         .filter(Boolean);
 
@@ -51,7 +50,7 @@ export default function Nav() {
       sections.forEach((section) => observer.observe(section));
 
       return () => observer.disconnect();
-    }, 300); // انتظار بسيط لتأكّد من تحميل الـ DOM
+    }, 500); // انتظار بسيط لتأكّد من تحميل الـ DOM
 
     return () => clearTimeout(timeout);
   }, [location.pathname]); //  يعيد التنفيذ عند تغيّر الصفحة
@@ -105,11 +104,11 @@ export default function Nav() {
               <li
                 key={item}
                 className={`text-[15px] relative font-medium transition-colors duration-300 
-                before:content-[''] before:absolute before:left-0 before:-bottom-1 
-                before:h-[2px] before:w-0 before:bg-current before:transition-all before:duration-300 
-                hover:before:w-full ${
-                  navFixed ? "text-black" : "text-white"
-                } hover:opacity-80`}
+                  before:content-[''] before:absolute before:left-0 before:-bottom-1 
+                  before:h-[2px] before:w-0 before:bg-current before:transition-all before:duration-300 
+                  hover:before:w-full ${
+                    navFixed ? "text-black" : "text-white"
+                  } hover:opacity-80`}
               >
                 <a href={`/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
@@ -137,7 +136,7 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 className="text-lg font-medium"
               >
-                <a href={`#/${item === "home" ? "" : item}`}>
+                <a href={`/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
                 </a>
               </li>
