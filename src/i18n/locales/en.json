@@ -1,13 +1,43 @@
 {
-  "nav": {
-    "home": "Home",
-    "articles": "Articles",
-    "contact": "Contact Me",
-    "about": "About",
-    "name": "Ashraf Almuhtaseb"
-  },
-  "hero": {
-    "welcome" : "Hello",
-    "intro": "I'm Ashraf Almuhtaseb"
-  }
+    "nav": {
+        "home": "Home",
+        "articles": "Articles",
+        "contact": "Contact Me",
+        "about": "About",
+        "name": "Ashraf Almuhtaseb"
+    },
+    "about-me": {
+        "title": "About Me",
+        "cvButton": "Download CV",
+        "contactButton": "Contact Me"
+    },
+    "contact": {
+        "title": "Contact Me",
+        "1": {
+            "title": "Address"
+        },
+        "2": {
+            "title": "Email"
+        },
+        "3": {
+            "title": "Phone"
+        },
+        "nameInput": "Name",
+        "emailInput": "Email",
+        "texterea": "Message",
+        "button": "Submit",
+        "successMessage": "Your message has been sent successfully.",
+        "errorMessage": "An error occurred while sending your message. Please try again later."
+
+    },
+
+    "articles": {
+        "sectionTitle": "Articles",
+        "sectionSubtitle": "Our Latest Articles",
+        "readMore": "Read More",
+        "viewAll": "View All",
+        "search": "Search",
+        "pinnedArticles": "Pinned Articles",
+        "noResults": "No Articles Found"
+    }
 }

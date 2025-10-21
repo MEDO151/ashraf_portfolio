@@ -5,10 +5,42 @@
     "contact": "تواصل معي",
     "about": "من انا",
     "name": "أشرف المحتسب"
-    
   },
   "hero": {
-    "welcome" : "مرحبًا",
+    "welcome": "مرحباً",
     "intro": "أنا أشرف المحتسب"
+  },
+  "about-me": {
+    "title": "نبذة عني",
+    "cvButton": "السيرة الذاتية",
+    "contactButton": "تواصل معي"
+  },
+  "contact": {
+    "title": "تواصل معي",
+    "1": {
+      "title": "العنوان"
+    },
+    "2": {
+      "title": "البريد الإلكتروني"
+    },
+    "3": {
+      "title": "رقم الهاتف"
+    },
+    "nameInput": "الاسم",
+    "emailInput": "البريد الإلكتروني",
+    "texterea": "الرسالة",
+    "button": "ارسال",
+    "successMessage": "تم الارسال بنجاح",
+    "errorMessage": "حدث خطأ في الارسال"
+  },
+
+  "articles": {
+    "sectionTitle": "المقالات",
+    "sectionSubtitle": "أحدث المقالات لدينا",
+    "readMore": "قراءة المزيد",
+    "viewAll": "عرض الكل",
+    "search": "بحث",
+    "pinnedArticles": "المقالات المميزة",
+    "noResults": "لا توجد نتائج"
   }
 }
