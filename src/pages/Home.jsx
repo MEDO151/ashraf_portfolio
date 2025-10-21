@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-const AboutMeSection = React.lazy(() => import("@/components/AboutMeSection"));
+import AboutMeSection from "@/components/AboutMeSection";
 import ContactSection from "@/components/ContactSection";
 import HeroSection from "@/components/HeroSection";
-const ArticlesSection = React.lazy(() =>
-  import("@/components/ArticlesSection")
-);
-
-import { Suspense } from "react";
+import ArticlesSection from "@/components/ArticlesSection";
 
 export default function Home() {
   const [homeData, setHomeData] = useState([]);
