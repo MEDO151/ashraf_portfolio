@@ -24,12 +24,8 @@ export default function Home() {
   return (
     <>
       <HeroSection homeData={homeData} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <AboutMeSection homeData={homeData} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ArticlesSection />
-      </Suspense>
+      <AboutMeSection homeData={homeData} />
+      <ArticlesSection />
       <ContactSection />
     </>
   );
