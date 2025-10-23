@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import i18next from "i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -6,19 +5,9 @@ import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 const HeroSection =  function ({ homeData }) {
     if (!homeData || !homeData.header) return null;
 
-    const [linkedIn, setLinkedIn] = useState([]);
+    
 
-    const getLinkedIn = async function(){
-        const res = await fetch(`/api/info`)
-        const data = await res.json()
-        setLinkedIn(data.linkedInLink)
-    }
-
-    useEffect(()=>{
-        getLinkedIn()
-    },[])
-
-    const linLink = linkedIn;
+    const linLink = "https://www.linkedin.com/in/ibnibrahem/";
     const heroData = homeData.header ;
 
     const currentLang = i18next.language || "en";
