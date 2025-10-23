@@ -22,6 +22,7 @@ export default function ContactAdmin() {
         email: jsonData.email || "",
         locatioAr: jsonData.address?.ar || "",
         locatioEn: jsonData.address?.en || "",
+        linkedIn: jsonData.linkedInLink || "",
         copyRightAr: jsonData.footer?.ar || "",
         copyRightEn: jsonData.footer?.en || "",
       });
@@ -62,6 +63,7 @@ export default function ContactAdmin() {
         body: JSON.stringify({
           phone: data.phoneNum,
           email: data.email,
+          linkedInLink: data.linkedIn,
           address: { ar: data.locatioAr, en: data.locatioEn },
           footer: { ar: data.copyRightAr, en: data.copyRightEn },
         }),
@@ -173,6 +175,7 @@ export default function ContactAdmin() {
             { id: "email", label: "البريد الإلكتروني للتواصل", dir: "ltr" },
             { id: "locatioAr", label: "العنوان (عربي)", dir: "rtl" },
             { id: "locatioEn", label: "العنوان (إنجليزي)", dir: "ltr" },
+            { id: "linkedIn", label: "لينك LinkedIn", dir: "ltr" },
             { id: "copyRightAr", label: "حقوق الطبع (عربي)", dir: "rtl" },
             { id: "copyRightEn", label: "حقوق الطبع (إنجليزي)", dir: "ltr" },
           ].map(({ id, label, dir }) => (

@@ -32,11 +32,7 @@ export default function AboutAdmin({
 
       if (!token) throw new Error("Missing token");
 
-      const res = await fetch(`/api/home-page`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(`/api/home-page`);
 
       if (!res.ok) throw new Error("فشل في جلب البيانات");
 
