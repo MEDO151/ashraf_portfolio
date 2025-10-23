@@ -175,7 +175,7 @@ export default function ContactAdmin() {
             { id: "email", label: "البريد الإلكتروني للتواصل", dir: "ltr" },
             { id: "locatioAr", label: "العنوان (عربي)", dir: "rtl" },
             { id: "locatioEn", label: "العنوان (إنجليزي)", dir: "ltr" },
-            { id: "linkedIn", label: "لينك LinkedIn", dir: "ltr" },
+            { id: "linkedIn", label: "لينك CV", dir: "ltr" },
             { id: "copyRightAr", label: "حقوق الطبع (عربي)", dir: "rtl" },
             { id: "copyRightEn", label: "حقوق الطبع (إنجليزي)", dir: "ltr" },
           ].map(({ id, label, dir }) => (
