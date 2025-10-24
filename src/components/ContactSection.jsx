@@ -35,7 +35,7 @@ export default function ContactSection() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, lang : currentLang }),
       });
 
       if (!res.ok) {
