@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const links = [
   {
-    to: "/admin/hero",
+    to: "/Mkafrawi/admin/hero",
     label: "الرئيسية",
     icon: (
       <svg
@@ -27,7 +27,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/about",
+    to: "/Mkafrawi/admin/about",
     label: "من انا",
     icon: (
       <svg
@@ -50,7 +50,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/articlesection",
+    to: "/Mkafrawi/admin/articlesection",
     label: "صفحة المقالات",
     icon: (
       <svg
@@ -73,7 +73,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/article",
+    to: "/Mkafrawi/admin/article",
     label: "المقالات",
     icon: (
       <svg
@@ -96,7 +96,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/contact",
+    to: "/Mkafrawi/admin/contact",
     label: "تواصل معي",
     icon: (
       <svg
@@ -119,7 +119,7 @@ const links = [
     ),
   },
   {
-    to: "/admin/seo",
+    to: "/Mkafrawi/admin/seo",
     label: "محركات البحث",
     icon: (
       <svg
@@ -148,7 +148,7 @@ export default function Sidebar() {
 
   const logout = () => {
     document.cookie = "token=; path=/; max-age=0";
-    navigate("/login");
+    navigate("/Mkafrawi/login");
   };
 
   return (
@@ -179,7 +179,7 @@ export default function Sidebar() {
       </div>
       <div className="border-t border-gray-200 pt-4 text-sm">
         <div className="p-4 flex flex-col gap-3">
-          <Link to={"/admin/change-password"}>
+          <Link to={"/Mkafrawi/admin/change-password"}>
             <Button
               variant={"outline"}
               className="w-full px-3 text-center py-2 rounded-md"

@@ -33,7 +33,6 @@
     "successMessage": "تم الارسال بنجاح",
     "errorMessage": "حدث خطأ في الارسال"
   },
-
   "articles": {
     "sectionTitle": "المقالات",
     "sectionSubtitle": "أحدث المقالات لدينا",
@@ -42,5 +41,9 @@
     "search": "بحث",
     "pinnedArticles": "المقالات المميزة",
     "noResults": "لا توجد نتائج"
+  },
+  "articlesDetails": {
+    "loading" : "جاري تحميل المقال...",
+    "notFound" : "لم يتم العثور على المقال."
   }
 }

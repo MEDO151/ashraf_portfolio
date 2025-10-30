@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import i18next from "i18next";
+import { t } from "i18next";
 
 export default function ArticleDetails() {
   const { slug } = useParams();
@@ -12,7 +13,9 @@ export default function ArticleDetails() {
 
   const getArticleBySlug = async (slug) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/articles/${slug}`);
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/articles/${slug}`
+      );
       const data = await res.json();
       setArticle(data);
     } catch (error) {
@@ -34,7 +37,7 @@ export default function ArticleDetails() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh] text-gray-500">
-        جاري تحميل المقال...
+        {t("articlesDetails.loading")}
       </div>
     );
   }
@@ -42,7 +45,7 @@ export default function ArticleDetails() {
   if (!article) {
     return (
       <div className="flex items-center justify-center h-[60vh] text-gray-500">
-        لم يتم العثور على المقال.
+        {t("articlesDetails.notFound")}
       </div>
     );
   }

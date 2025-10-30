@@ -89,7 +89,7 @@ export default function ArticleAdmin() {
       <div className="flex justify-between mb-10 items-center">
         <h1 className="text-2xl text-primary font-bold mb-1">إدارة المقالات</h1>
 
-        <Link to="/admin/article/create">
+        <Link to="/Mkafrawi/admin/article/create">
           <Button size="cv" className="py-2 text-md flex gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ export default function ArticleAdmin() {
 
                 <div className="flex justify-between items-center">
                   <Link
-                    to={`/admin/article/edit/${article.slug}`}
+                    to={`/Mkafrawi/admin/article/edit/${article.slug}`}
                     className="w-fit"
                   >
                     <Button className="py-2 px-3" size="lg">
@@ -200,7 +200,7 @@ export default function ArticleAdmin() {
               </p>
               <div className="flex justify-between items-center">
                 <Link
-                  to={`/admin/article/edit/${article.slug}`}
+                  to={`/Mkafrawi/admin/article/edit/${article.slug}`}
                   className="w-fit"
                 >
                   <Button className="py-2 px-3" size="lg">

@@ -31,11 +31,11 @@ export default function Login() {
         return;
       }
 
-      document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=strict; secure`;
+      document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=strict;`;
 
       setSuccessMessage("تم تسجيل الدخول بنجاح ✅");
       setTimeout(() => {
-        navigate("/admin");
+        navigate("/Mkafrawi/admin");
       }, 2000);
     } catch (error) {
       console.error("Error during login:", error);

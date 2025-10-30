@@ -50,7 +50,7 @@ export default function ChangePasswordCard() {
                 setNewPassword("");
                 setConfirmPassword("");
                 document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                navigate("/login");
+                navigate("/Mkafrawi/login");
             } else {
                 alert(
                     `❌ فشل تغيير كلمة المرور: ${

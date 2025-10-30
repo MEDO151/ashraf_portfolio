@@ -10,7 +10,7 @@ export default function ProtectedRoute() {
 
   if (!token) {
     // لو مفيش توكن، رجّع المستخدم على صفحة اللوجين
-    return <Navigate to="/login" replace />;
+    return <Navigate to="Mkafrawi/login" replace />;
   }
 
   // لو فيه توكن، اعرض المحتوى الداخلي

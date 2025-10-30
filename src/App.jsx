@@ -23,7 +23,7 @@ function App() {
   useDirection();
   const { seoData } = useSeo();
 
-  if (!seoData.title) return null; // انتظار البيانات قبل عرض الـ Helmet
+  if (!seoData.title) return null;
 
   return (
     <>
@@ -36,13 +36,13 @@ function App() {
 
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="Mkafrawi/" element={<Home />} />
           <Route path="/articles" element={<AllArticles />} />
           <Route path="/articles/:slug" element={<ArticleDetails />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<DashboardLayout />}>
+          <Route path="Mkafrawi/admin" element={<DashboardLayout />}>
             <Route index element={<Navigate to="hero" />} />
             <Route path="hero" element={<HeroAdmin />} />
             <Route path="about" element={<AboutAdmin />} />
@@ -55,12 +55,11 @@ function App() {
             <Route path="article/create" element={<CreateArticle />} />
             <Route path="contact" element={<ContactAdmin />} />
             <Route path="seo" element={<SeoAdmin />} />
-            <Route path="change-password" element={<ChangePassword />} />{" "}
-            {/* ✅ هنا */}
+            <Route path="change-password" element={<ChangePassword />} />
           </Route>
         </Route>
 
-        <Route path="/login" element={<Login />} />
+        <Route path="Mkafrawi/login" element={<Login />} />
 
         <Route
           path="*"

@@ -110,7 +110,7 @@ export default function Nav() {
                     navFixed ? "text-black" : "text-white"
                   } hover:opacity-80`}
               >
-                <a href={`/#${item === "home" ? "" : item}`}>
+                <a href={`/Mkafrawi/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
                 </a>
               </li>
@@ -136,7 +136,7 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 className="text-lg font-medium"
               >
-                <a href={`/#${item === "home" ? "" : item}`}>
+                <a href={`/Mkafrawi/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
                 </a>
               </li>
