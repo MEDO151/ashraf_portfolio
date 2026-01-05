@@ -30,31 +30,15 @@ export default function Nav() {
 
   // مراقبة الأقسام لتبديل حالة الـ nav (تتحدث مع تغيّر الصفحة)
   useEffect(() => {
-    setNavFixed(false); // إعادة التهيئة عند كل تنقّل
+  const handleScroll = () => {
+    setNavFixed(window.scrollY > 0);
+  };
 
-    const timeout = setTimeout(() => {
-      const sections = ["#heroSection", "#allArticles", "#article"]
-        .map((id) => document.querySelector(id))
-        .filter(Boolean);
+  handleScroll(); // يشتغل عند أول تحميل
+  window.addEventListener("scroll", handleScroll);
 
-      if (sections.length === 0) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const anyVisible = entries.some((entry) => entry.isIntersecting);
-          setNavFixed(!anyVisible);
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach((section) => observer.observe(section));
-
-      return () => observer.disconnect();
-    }, 500); // انتظار بسيط لتأكّد من تحميل الـ DOM
-
-    return () => clearTimeout(timeout);
-  }, [location.pathname]); //  يعيد التنفيذ عند تغيّر الصفحة
-
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
   return (
     <>
       {/* Overlay للموبايل */}
@@ -110,7 +94,7 @@ export default function Nav() {
                     navFixed ? "text-black" : "text-white"
                   } hover:opacity-80`}
               >
-                <a href={`/Mkafrawi/#${item === "home" ? "" : item}`}>
+                <a href={`/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
                 </a>
               </li>
@@ -136,7 +120,7 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 className="text-lg font-medium"
               >
-                <a href={`/Mkafrawi/#${item === "home" ? "" : item}`}>
+                <a href={`/#${item === "home" ? "" : item}`}>
                   {t(`nav.${item}`)}
                 </a>
               </li>

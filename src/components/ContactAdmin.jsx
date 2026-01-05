@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-
 export default function ContactAdmin() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
-
   const getContactData = async () => {
     setLoading(true);
     setError("");
-
     try {
       
-
       const res = await fetch(`${import.meta.env.VITE_API_URL}/info`);
       if (!res.ok) throw new Error("فشل في تحميل البيانات من الخادم");
-
       const jsonData = await res.json();
-
       setData({
         phoneNum: jsonData.phone || "",
         email: jsonData.email || "",
+        cvLink: jsonData.cvLink || "",
         locatioAr: jsonData.address?.ar || "",
         locatioEn: jsonData.address?.en || "",
         copyRightAr: jsonData.footer?.ar || "",
@@ -34,29 +29,21 @@ export default function ContactAdmin() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     getContactData();
   }, []);
-
   const handleChange = (e) => {
     const { id, value } = e.target;
     setData((prev) => ({ ...prev, [id]: value }));
   };
-
   const handleSave = async () => {
     if (isSaving) return;
-
     try {
       const token = document.cookie
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
-
-
-
       setIsSaving(true);
-
       const res = await fetch(`${import.meta.env.VITE_API_URL}/info`, {
         method: "PUT",
         headers: {
@@ -66,18 +53,16 @@ export default function ContactAdmin() {
         body: JSON.stringify({
           phone: data.phoneNum,
           email: data.email,
+          cvLink: data.cvLink,
           address: { ar: data.locatioAr, en: data.locatioEn },
           footer: { ar: data.copyRightAr, en: data.copyRightEn },
         }),
       });
-
       const result = await res.json();
-
       if (!res.ok) {
         const msg = result?.error || result?.message || "تعذر حفظ التغييرات.";
         throw new Error(msg);
       }
-
       alert("✅ تم حفظ التغييرات بنجاح!");
     } catch (err) {
       console.error(err);
@@ -86,19 +71,16 @@ export default function ContactAdmin() {
       setIsSaving(false);
     }
   };
-
   if (loading)
     return (
       <p className="flex justify-center items-center min-h-screen text-xl font-semibold">
         جارٍ تحميل البيانات...
       </p>
     );
-
   if (error)
     return (
       <p className="text-center text-red-600 mt-10 font-medium">{error}</p>
     );
-
   return (
     <>
       <div className="flex justify-between items-center">
@@ -110,7 +92,6 @@ export default function ContactAdmin() {
             إدارة محتوى تواصل معي في الصفحة الرئيسية
           </p>
         </div>
-
         {/* ✅ زر الحفظ الجديد */}
         <Button
           size="cv"
@@ -165,16 +146,15 @@ export default function ContactAdmin() {
           )}
         </Button>
       </div>
-
       <div className="rounded-lg border p-5 flex flex-col gap-5 bg-white mt-10 shadow-sm">
         <div className="flex gap-2 text-xl font-semibold leading-none items-center">
           <span className="text-primary">تواصل معي</span>
         </div>
-
         <div className="mt-5 flex flex-col gap-4">
           {[
             { id: "phoneNum", label: "رقم الهاتف", dir: "ltr" },
             { id: "email", label: "البريد الإلكتروني للتواصل", dir: "ltr" },
+            { id: "cvLink", label: "رابط السيرة الذاتية (CV)", dir: "ltr" },
             { id: "locatioAr", label: "العنوان (عربي)", dir: "rtl" },
             { id: "locatioEn", label: "العنوان (إنجليزي)", dir: "ltr" },
             { id: "copyRightAr", label: "حقوق الطبع (عربي)", dir: "rtl" },

@@ -36,13 +36,13 @@ function App() {
 
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="Mkafrawi/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/articles" element={<AllArticles />} />
           <Route path="/articles/:slug" element={<ArticleDetails />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="Mkafrawi/admin" element={<DashboardLayout />}>
+          <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<Navigate to="hero" />} />
             <Route path="hero" element={<HeroAdmin />} />
             <Route path="about" element={<AboutAdmin />} />
@@ -59,7 +59,7 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="Mkafrawi/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         <Route
           path="*"
